@@ -3,322 +3,174 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Stock Việt - Thị trường chứng khoán</title>
+<title>Stock Việt</title>
 
 <style>
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-}
-
+*{box-sizing:border-box}
 body{
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+  margin:0;
   background:#07111f;
   color:#fff;
-  padding-bottom:85px;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
 }
-
 header{
-  background:#0b1728;
-  padding:18px 16px 14px;
-  position:sticky;
-  top:0;
-  z-index:10;
-  border-bottom:1px solid #1c2a3c;
+  padding:22px 16px 15px;
+  border-bottom:1px solid #1c2939;
 }
-
 .logo{
-  font-size:24px;
+  font-size:27px;
   font-weight:800;
 }
-
-.logo span{
-  color:#20d78b;
-}
-
+.logo span{color:#20c997}
 .sub{
-  color:#8190a5;
-  font-size:12px;
-  margin-top:3px;
+  color:#8b9bad;
+  margin-top:4px;
+  font-size:13px;
 }
-
-.demo{
-  display:inline-block;
-  background:#162337;
-  color:#ffca55;
-  padding:5px 9px;
-  border-radius:20px;
-  font-size:11px;
-  margin-top:9px;
-}
-
 .container{
   padding:15px;
-  max-width:1100px;
+  max-width:900px;
   margin:auto;
 }
-
+.tabs{
+  display:flex;
+  background:#101d2c;
+  border-radius:12px;
+  padding:4px;
+  margin-bottom:15px;
+}
+.tab{
+  flex:1;
+  text-align:center;
+  padding:11px;
+  border-radius:9px;
+  color:#8fa0b5;
+  font-weight:600;
+}
+.tab.active{
+  background:#1d3045;
+  color:white;
+}
 .market{
   display:grid;
   grid-template-columns:repeat(3,1fr);
-  gap:9px;
+  gap:8px;
+  margin-bottom:18px;
 }
-
 .card{
-  background:#0e1b2d;
-  border:1px solid #1c2b3e;
-  border-radius:13px;
+  background:#101d2c;
   padding:12px;
-}
-
-.index-name{
-  color:#9aa8ba;
-  font-size:11px;
-}
-
-.index-price{
-  font-size:18px;
-  font-weight:700;
-  margin-top:5px;
-}
-
-.green{color:#20d78b}
-.red{color:#ff5f6d}
-.yellow{color:#ffd15c}
-
-.change{
-  font-size:11px;
-  margin-top:5px;
-}
-
-.search{
-  margin:18px 0;
-}
-
-.search input{
-  width:100%;
-  padding:14px 16px;
   border-radius:12px;
-  border:1px solid #26364b;
-  background:#0e1b2d;
-  color:#fff;
+}
+.symbol{
+  font-size:12px;
+  color:#9babc0;
+}
+.price{
+  font-weight:700;
+  font-size:17px;
+  margin-top:5px;
+}
+.green{color:#20c997}
+.red{color:#ff5c6c}
+
+.chartbox{
+  background:#101d2c;
+  border-radius:15px;
+  padding:15px;
+  margin-bottom:18px;
+}
+.charthead{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+.bigprice{
+  font-size:25px;
+  font-weight:800;
+  margin-top:5px;
+}
+.timeframes{
+  display:flex;
+  gap:7px;
+  margin:15px 0 5px;
+}
+.timeframes button{
+  border:0;
+  background:#18283a;
+  color:#9eb0c4;
+  padding:7px 12px;
+  border-radius:7px;
+}
+.timeframes .active{
+  background:#243c54;
+  color:white;
+}
+#chart{
+  height:280px;
+  margin-top:10px;
+}
+.title{
+  font-size:17px;
+  font-weight:700;
+  margin:20px 0 10px;
+}
+.coin{
+  display:flex;
+  align-items:center;
+  padding:14px 3px;
+  border-bottom:1px solid #172638;
+  cursor:pointer;
+}
+.coinlogo{
+  width:38px;
+  height:38px;
+  border-radius:50%;
+  background:#18283a;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:800;
+  margin-right:11px;
+}
+.coinname{
+  flex:1;
+}
+.coinname strong{
+  display:block;
+}
+.coinname small{
+  color:#8495aa;
+}
+.coinprice{
+  text-align:right;
+}
+.coinprice strong{
+  display:block;
+}
+.coinprice small{
+  font-weight:600;
+}
+.search{
+  width:100%;
+  padding:13px;
+  border-radius:11px;
+  border:1px solid #243448;
+  background:#0d1928;
+  color:white;
   font-size:15px;
   outline:none;
 }
-
-.section-title{
-  font-size:18px;
-  font-weight:700;
-  margin:22px 0 12px;
-}
-
-.stock-table{
-  background:#0e1b2d;
-  border:1px solid #1d2c40;
-  border-radius:14px;
-  overflow:hidden;
-}
-
-.stock-row{
-  display:grid;
-  grid-template-columns:1fr .8fr .8fr .9fr;
-  padding:13px 12px;
-  border-bottom:1px solid #1b293b;
-  align-items:center;
-}
-
-.stock-row:last-child{
-  border-bottom:none;
-}
-
-.stock-header{
-  background:#111f32;
-  color:#8090a6;
-  font-size:11px;
-}
-
-.symbol{
-  font-weight:800;
-  font-size:15px;
-}
-
-.company{
-  color:#718198;
-  font-size:9px;
-  margin-top:2px;
-}
-
-.number{
-  text-align:right;
-  font-size:13px;
-}
-
-.stock-row:not(.stock-header){
-  cursor:pointer;
-}
-
-.detail{
-  background:linear-gradient(145deg,#0e1b2d,#101f32);
-  border:1px solid #203149;
-  border-radius:15px;
-  padding:16px;
-}
-
-.detail-top{
-  display:flex;
-  justify-content:space-between;
-}
-
-.detail-symbol{
-  font-size:24px;
-  font-weight:800;
-}
-
-.detail-price{
-  font-size:25px;
-  font-weight:800;
-}
-
-.chart{
-  height:150px;
-  margin-top:18px;
-  position:relative;
-  overflow:hidden;
-}
-
-.chart svg{
-  width:100%;
-  height:100%;
-}
-
-.stats{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:8px;
-  margin-top:10px;
-}
-
-.stat{
-  background:#0a1625;
-  border-radius:9px;
-  padding:9px;
-}
-
-.stat small{
-  color:#78899f;
-  font-size:9px;
-}
-
-.stat div{
-  font-size:12px;
-  margin-top:4px;
-  font-weight:600;
-}
-
-.watch-item,
-.news{
-  background:#0e1b2d;
-  border:1px solid #1d2c40;
-  border-radius:12px;
-  padding:13px;
-  margin-bottom:9px;
-}
-
-.watch-item{
-  display:flex;
-  justify-content:space-between;
-}
-
-.news-title{
-  font-weight:600;
-  font-size:14px;
-  line-height:1.4;
-}
-
-.news-meta{
-  color:#718198;
-  font-size:10px;
-  margin-top:7px;
-}
-
-.movers{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:10px;
-}
-
-.mover-title{
-  font-size:12px;
-  color:#8998aa;
-  margin-bottom:9px;
-}
-
-.mover{
-  display:flex;
-  justify-content:space-between;
-  font-size:13px;
-  margin:8px 0;
-}
-
-footer{
+.footer{
   text-align:center;
-  color:#607087;
-  font-size:10px;
-  padding:30px 20px;
-  line-height:1.5;
+  color:#65778b;
+  font-size:12px;
+  padding:25px 10px;
 }
-
-.bottom-nav{
-  position:fixed;
-  bottom:0;
-  left:0;
-  right:0;
-  height:68px;
-  background:#0b1728;
-  border-top:1px solid #233248;
-  display:flex;
-  justify-content:space-around;
-  align-items:center;
-  z-index:20;
-}
-
-.nav-item{
-  color:#718198;
-  font-size:10px;
-  text-align:center;
-  cursor:pointer;
-}
-
-.nav-icon{
-  font-size:20px;
-  margin-bottom:3px;
-}
-
-.active{
-  color:#20d78b;
-}
-
 @media(max-width:500px){
-  .market{
-    grid-template-columns:1fr 1fr;
-  }
-
-  .market .card:last-child{
-    grid-column:1/3;
-  }
-}
-
-@media(min-width:800px){
-  .container{
-    padding:25px;
-  }
-
-  .desktop-grid{
-    display:grid;
-    grid-template-columns:1.5fr 1fr;
-    gap:20px;
-  }
+  .market{grid-template-columns:repeat(3,1fr)}
+  .price{font-size:14px}
+  .card{padding:10px 7px}
 }
 </style>
 </head>
@@ -326,340 +178,189 @@ footer{
 <body>
 
 <header>
-  <div class="logo">Stock <span>Việt</span></div>
-  <div class="sub">Thông tin thị trường chứng khoán Việt Nam</div>
-  <div class="demo">⚠ Dữ liệu mô phỏng</div>
+<div class="logo">Stock <span>Việt</span></div>
+<div class="sub">Thị trường chứng khoán & tài sản số</div>
 </header>
 
 <div class="container">
 
-  <div class="market">
-    <div class="card">
-      <div class="index-name">VN-INDEX</div>
-      <div class="index-price">1,284.62</div>
-      <div class="change green">▲ 6.32 (+0.49%)</div>
-    </div>
+<div class="tabs">
+<div class="tab">Chứng khoán</div>
+<div class="tab active">Crypto</div>
+</div>
 
-    <div class="card">
-      <div class="index-name">HNX-INDEX</div>
-      <div class="index-price">238.45</div>
-      <div class="change red">▼ 0.81 (-0.34%)</div>
-    </div>
+<div class="market">
+<div class="card">
+<div class="symbol">VN-INDEX</div>
+<div class="price">1,284.62</div>
+<div class="green">+0.49%</div>
+</div>
 
-    <div class="card">
-      <div class="index-name">UPCOM</div>
-      <div class="index-price">94.18</div>
-      <div class="change green">▲ 0.27 (+0.29%)</div>
-    </div>
-  </div>
+<div class="card">
+<div class="symbol">HNX-INDEX</div>
+<div class="price">238.41</div>
+<div class="green">+0.31%</div>
+</div>
 
-  <div class="search">
-    <input id="search" type="text"
-      placeholder="🔎 Tìm mã cổ phiếu: FPT, VCB, HPG...">
-  </div>
+<div class="card">
+<div class="symbol">UPCOM</div>
+<div class="price">94.17</div>
+<div class="red">-0.18%</div>
+</div>
+</div>
 
-  <div class="desktop-grid">
+<div class="chartbox">
+<div class="charthead">
+<div>
+<div id="chartSymbol"><b>BTC / USDT</b></div>
+<div class="bigprice" id="chartPrice">$64,250.00</div>
+<div class="green" id="chartChange">+2.45%</div>
+</div>
+</div>
 
-    <div>
+<div class="timeframes">
+<button>1H</button>
+<button>4H</button>
+<button class="active">1D</button>
+<button>1W</button>
+</div>
 
-      <div class="section-title">Bảng giá</div>
+<div id="chart"></div>
+</div>
 
-      <div class="stock-table" id="stockTable">
+<input class="search" id="search" placeholder="Tìm Bitcoin, Ethereum, BNB...">
 
-        <div class="stock-row stock-header">
-          <div>MÃ CK</div>
-          <div class="number">GIÁ</div>
-          <div class="number">+/-</div>
-          <div class="number">%</div>
-        </div>
+<div class="title">Thị trường Crypto</div>
 
-      </div>
+<div id="coinList"></div>
 
-      <div class="section-title">Chi tiết cổ phiếu</div>
-
-      <div class="detail">
-
-        <div class="detail-top">
-          <div>
-            <div class="detail-symbol" id="detailSymbol">FPT</div>
-            <div class="sub" id="detailCompany">
-              CTCP FPT
-            </div>
-          </div>
-
-          <div style="text-align:right">
-            <div class="detail-price green" id="detailPrice">
-              132.50
-            </div>
-            <div class="green" id="detailChange">
-              +1.50 (+1.15%)
-            </div>
-          </div>
-        </div>
-
-        <div class="chart">
-          <svg viewBox="0 0 500 150"
-            preserveAspectRatio="none">
-            <defs>
-              <linearGradient id="grad"
-                x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%"
-                  stop-color="#20d78b"
-                  stop-opacity=".30"/>
-                <stop offset="100%"
-                  stop-color="#20d78b"
-                  stop-opacity="0"/>
-              </linearGradient>
-            </defs>
-
-            <path
-              d="M0 120 L35 105 L70 110 L105 83 L140 91 L175 65 L210 72 L245 48 L280 58 L315 36 L350 44 L385 25 L420 39 L455 18 L500 28 L500 150 L0 150 Z"
-              fill="url(#grad)">
-            </path>
-
-            <path
-              d="M0 120 L35 105 L70 110 L105 83 L140 91 L175 65 L210 72 L245 48 L280 58 L315 36 L350 44 L385 25 L420 39 L455 18 L500 28"
-              fill="none"
-              stroke="#20d78b"
-              stroke-width="3">
-            </path>
-          </svg>
-        </div>
-
-        <div class="stats">
-          <div class="stat">
-            <small>Tham chiếu</small>
-            <div id="reference">131.00</div>
-          </div>
-
-          <div class="stat">
-            <small>Cao nhất</small>
-            <div id="high">133.20</div>
-          </div>
-
-          <div class="stat">
-            <small>Thấp nhất</small>
-            <div id="low">130.50</div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-    <div>
-
-      <div class="section-title">Biến động nổi bật</div>
-
-      <div class="movers">
-
-        <div class="card">
-          <div class="mover-title">🔥 Tăng mạnh</div>
-          <div class="mover"><b>SSI</b><span class="green">+3.12%</span></div>
-          <div class="mover"><b>FPT</b><span class="green">+1.15%</span></div>
-          <div class="mover"><b>HPG</b><span class="green">+0.91%</span></div>
-        </div>
-
-        <div class="card">
-          <div class="mover-title">Giảm mạnh</div>
-          <div class="mover"><b>VHM</b><span class="red">-1.28%</span></div>
-          <div class="mover"><b>VNM</b><span class="red">-0.62%</span></div>
-          <div class="mover"><b>MWG</b><span class="red">-0.38%</span></div>
-        </div>
-
-      </div>
-
-      <div class="section-title">Danh mục theo dõi</div>
-
-      <div class="watch-item">
-        <div><b>FPT</b><div class="company">Công nghệ</div></div>
-        <div class="green">132.50 ▲</div>
-      </div>
-
-      <div class="watch-item">
-        <div><b>VCB</b><div class="company">Ngân hàng</div></div>
-        <div class="green">91.20 ▲</div>
-      </div>
-
-      <div class="watch-item">
-        <div><b>HPG</b><div class="company">Thép</div></div>
-        <div class="green">28.75 ▲</div>
-      </div>
-
-      <div class="section-title">Tin thị trường</div>
-
-      <div class="news">
-        <div class="news-title">
-          Thị trường duy trì sắc xanh, nhóm cổ phiếu
-          vốn hóa lớn giao dịch tích cực
-        </div>
-        <div class="news-meta">
-          Tin mô phỏng • 10 phút trước
-        </div>
-      </div>
-
-      <div class="news">
-        <div class="news-title">
-          Nhà đầu tư chú ý diễn biến nhóm ngân hàng
-          và chứng khoán
-        </div>
-        <div class="news-meta">
-          Tin mô phỏng • 35 phút trước
-        </div>
-      </div>
-
-      <div class="news">
-        <div class="news-title">
-          Thanh khoản thị trường cải thiện trong
-          phiên giao dịch
-        </div>
-        <div class="news-meta">
-          Tin mô phỏng • 1 giờ trước
-        </div>
-      </div>
-
-    </div>
-  </div>
+<div class="footer">
+Stock Việt • Theo dõi thị trường
+</div>
 
 </div>
 
-<footer>
-  Stock Việt • Phiên bản thử nghiệm<br>
-  Dữ liệu trên website hiện là dữ liệu mô phỏng,
-  không phải dữ liệu giao dịch thời gian thực.
-</footer>
-
-<div class="bottom-nav">
-  <div class="nav-item active">
-    <div class="nav-icon">⌂</div>
-    Thị trường
-  </div>
-
-  <div class="nav-item">
-    <div class="nav-icon">☆</div>
-    Theo dõi
-  </div>
-
-  <div class="nav-item">
-    <div class="nav-icon">⌕</div>
-    Tìm kiếm
-  </div>
-
-  <div class="nav-item">
-    <div class="nav-icon">☰</div>
-    Tin tức
-  </div>
-</div>
+<script src="https://unpkg.com/lightweight-charts/dist/lightweight-charts.standalone.production.js"></script>
 
 <script>
-
-const stocks = [
-  {symbol:"FPT", company:"CTCP FPT", price:132.50, change:1.50, percent:1.15},
-  {symbol:"VCB", company:"Vietcombank", price:91.20, change:0.80, percent:0.88},
-  {symbol:"HPG", company:"Hòa Phát", price:28.75, change:0.26, percent:0.91},
-  {symbol:"VNM", company:"Vinamilk", price:64.30, change:-0.40, percent:-0.62},
-  {symbol:"MWG", company:"Thế Giới Di Động", price:68.10, change:-0.26, percent:-0.38},
-  {symbol:"SSI", company:"Chứng khoán SSI", price:34.70, change:1.05, percent:3.12},
-  {symbol:"VHM", company:"Vinhomes", price:42.40, change:-0.55, percent:-1.28}
+const coins=[
+ {symbol:"BTC",name:"Bitcoin",price:64250,change:2.45},
+ {symbol:"ETH",name:"Ethereum",price:3348.20,change:1.82},
+ {symbol:"BNB",name:"BNB",price:612.40,change:-0.74},
+ {symbol:"SOL",name:"Solana",price:148.72,change:3.21},
+ {symbol:"XRP",name:"XRP",price:0.58,change:1.14},
+ {symbol:"DOGE",name:"Dogecoin",price:0.118,change:-1.26}
 ];
 
-const table = document.getElementById("stockTable");
+const coinList=document.getElementById("coinList");
 
-function renderStocks(list){
-
-  const header = `
-    <div class="stock-row stock-header">
-      <div>MÃ CK</div>
-      <div class="number">GIÁ</div>
-      <div class="number">+/-</div>
-      <div class="number">%</div>
-    </div>
-  `;
-
-  table.innerHTML = header;
-
-  list.forEach(stock => {
-
-    const color = stock.change >= 0 ? "green" : "red";
-    const sign = stock.change >= 0 ? "+" : "";
-
-    const row = document.createElement("div");
-    row.className = "stock-row";
-
-    row.innerHTML = `
-      <div>
-        <div class="symbol">${stock.symbol}</div>
-        <div class="company">${stock.company}</div>
-      </div>
-
-      <div class="number ${color}">
-        ${stock.price.toFixed(2)}
-      </div>
-
-      <div class="number ${color}">
-        ${sign}${stock.change.toFixed(2)}
-      </div>
-
-      <div class="number ${color}">
-        ${sign}${stock.percent.toFixed(2)}%
-      </div>
-    `;
-
-    row.onclick = () => showStock(stock);
-
-    table.appendChild(row);
-  });
+function money(n){
+ if(n<1) return "$"+n.toFixed(3);
+ return "$"+n.toLocaleString("en-US",{maximumFractionDigits:2});
 }
 
-function showStock(stock){
+function renderCoins(data){
+ coinList.innerHTML="";
+ data.forEach(c=>{
+   const row=document.createElement("div");
+   row.className="coin";
 
-  const color = stock.change >= 0 ? "green" : "red";
-  const sign = stock.change >= 0 ? "+" : "";
+   row.innerHTML=`
+   <div class="coinlogo">${c.symbol.charAt(0)}</div>
+   <div class="coinname">
+     <strong>${c.symbol}/USDT</strong>
+     <small>${c.name}</small>
+   </div>
+   <div class="coinprice">
+     <strong>${money(c.price)}</strong>
+     <small class="${c.change>=0?'green':'red'}">
+       ${c.change>=0?'+':''}${c.change.toFixed(2)}%
+     </small>
+   </div>`;
 
-  document.getElementById("detailSymbol").textContent =
-    stock.symbol;
-
-  document.getElementById("detailCompany").textContent =
-    stock.company;
-
-  const price = document.getElementById("detailPrice");
-
-  price.textContent = stock.price.toFixed(2);
-  price.className = "detail-price " + color;
-
-  const change = document.getElementById("detailChange");
-
-  change.textContent =
-    `${sign}${stock.change.toFixed(2)} (${sign}${stock.percent.toFixed(2)}%)`;
-
-  change.className = color;
-
-  const reference = stock.price - stock.change;
-
-  document.getElementById("reference").textContent =
-    reference.toFixed(2);
-
-  document.getElementById("high").textContent =
-    (stock.price * 1.012).toFixed(2);
-
-  document.getElementById("low").textContent =
-    (stock.price * 0.988).toFixed(2);
+   row.onclick=()=>selectCoin(c);
+   coinList.appendChild(row);
+ });
 }
 
-document.getElementById("search")
-.addEventListener("input", function(){
+renderCoins(coins);
 
-  const keyword = this.value.toUpperCase().trim();
-
-  const result = stocks.filter(stock =>
-    stock.symbol.includes(keyword) ||
-    stock.company.toUpperCase().includes(keyword)
-  );
-
-  renderStocks(result);
+document.getElementById("search").addEventListener("input",function(){
+ const q=this.value.toUpperCase();
+ renderCoins(coins.filter(c=>
+   c.symbol.includes(q) ||
+   c.name.toUpperCase().includes(q)
+ ));
 });
 
-renderStocks(stocks);
+const chart=LightweightCharts.createChart(
+ document.getElementById("chart"),
+ {
+  layout:{
+    background:{color:"#101d2c"},
+    textColor:"#8798ac"
+  },
+  grid:{
+    vertLines:{color:"#172638"},
+    horzLines:{color:"#172638"}
+  },
+  width:document.getElementById("chart").clientWidth,
+  height:280
+ }
+);
 
+const candleSeries=chart.addCandlestickSeries({
+ upColor:"#20c997",
+ downColor:"#ff5c6c",
+ borderVisible:false,
+ wickUpColor:"#20c997",
+ wickDownColor:"#ff5c6c"
+});
+
+function makeData(base){
+ let data=[];
+ let price=base*0.94;
+ let now=Math.floor(Date.now()/1000);
+ for(let i=40;i>0;i--){
+   let open=price;
+   let change=(Math.random()-.47)*(base*.018);
+   let close=Math.max(open+change,1);
+   let high=Math.max(open,close)+(Math.random()*base*.006);
+   let low=Math.min(open,close)-(Math.random()*base*.006);
+
+   data.push({
+    time:now-i*86400,
+    open:open,
+    high:high,
+    low:low,
+    close:close
+   });
+   price=close;
+ }
+ return data;
+}
+
+function selectCoin(c){
+ document.getElementById("chartSymbol").innerHTML="<b>"+c.symbol+" / USDT</b>";
+ document.getElementById("chartPrice").textContent=money(c.price);
+
+ const ch=document.getElementById("chartChange");
+ ch.textContent=(c.change>=0?"+":"")+c.change.toFixed(2)+"%";
+ ch.className=c.change>=0?"green":"red";
+
+ candleSeries.setData(makeData(c.price));
+ chart.timeScale().fitContent();
+
+ window.scrollTo({top:200,behavior:"smooth"});
+}
+
+selectCoin(coins[0]);
+
+window.addEventListener("resize",()=>{
+ chart.applyOptions({
+  width:document.getElementById("chart").clientWidth
+ });
+});
 </script>
 
 </body>
