@@ -356,10 +356,44 @@ async function updateCryptoPrices(){
   }
 }
 
-function selectCoin(c){
+  function selectCoin(c){
   updateBigPrice(c);
-}
 
+  const symbolMap = {
+    BTC: "BINANCE:BTCUSDT",
+    ETH: "BINANCE:ETHUSDT",
+    BNB: "BINANCE:BNBUSDT",
+    SOL: "BINANCE:SOLUSDT",
+    XRP: "BINANCE:XRPUSDT",
+    DOGE: "BINANCE:DOGEUSDT"
+  };
+
+  const widget = document.querySelector(
+    ".tradingview-widget-container"
+  );
+
+  if(widget){
+    widget.innerHTML = `
+      <div class="tradingview-widget-container__widget"
+           style="height:100%;width:100%"></div>
+      <script type="text/javascript"
+        src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js"
+        async>
+      {
+        "autosize": true,
+        "symbol": "${symbolMap[c.symbol]}",
+        "interval": "D",
+        "timezone": "Asia/Ho_Chi_Minh",
+        "theme": "dark",
+        "style": "1",
+        "locale": "vi",
+        "allow_symbol_change": true,
+        "calendar": false
+      }
+      <\/script>
+    `;
+  }
+}
 document.getElementById("search").addEventListener("input",function(){
   const q = this.value.toUpperCase();
 
