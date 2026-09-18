@@ -6,9 +6,7 @@
 <title>Stock Việt</title>
 
 <style>
-*{
-  box-sizing:border-box;
-}
+*{box-sizing:border-box}
 
 body{
   margin:0;
@@ -20,46 +18,45 @@ body{
 .container{
   max-width:900px;
   margin:auto;
-  padding:28px;
+  padding:24px;
 }
 
 header{
-  padding:22px 0 26px;
+  padding:20px 0 24px;
   border-bottom:1px solid #1d2c3e;
 }
 
 .logo{
-  font-size:42px;
+  font-size:40px;
   font-weight:800;
 }
 
-.logo span{
-  color:#4fc59d;
-}
+.logo span{color:#4fc59d}
 
 .subtitle{
   color:#8798ac;
-  margin-top:8px;
-  font-size:20px;
+  margin-top:7px;
+  font-size:18px;
 }
 
 .tabs{
   display:flex;
   background:#101e2d;
-  padding:7px;
-  border-radius:22px;
-  margin:30px 0;
+  padding:6px;
+  border-radius:20px;
+  margin:28px 0;
 }
 
 .tab{
   width:50%;
   border:0;
-  padding:18px 10px;
-  border-radius:17px;
+  padding:16px 8px;
+  border-radius:15px;
   background:transparent;
   color:#8999ad;
-  font-size:22px;
+  font-size:20px;
   font-weight:700;
+  cursor:pointer;
 }
 
 .tab.active{
@@ -70,77 +67,74 @@ header{
 .indexes{
   display:grid;
   grid-template-columns:repeat(3,1fr);
-  gap:15px;
-  margin-bottom:28px;
+  gap:12px;
+  margin-bottom:25px;
 }
 
 .index-card{
   background:#111f2f;
-  border-radius:20px;
-  padding:18px 15px;
+  border-radius:18px;
+  padding:17px 13px;
 }
 
 .index-name{
   color:#91a0b4;
-  font-size:16px;
+  font-size:14px;
 }
 
 .index-price{
-  font-size:23px;
+  font-size:21px;
   font-weight:750;
-  margin-top:8px;
-}
-
-.green{
-  color:#42d3a5;
-}
-
-.red{
-  color:#ff6471;
+  margin-top:7px;
 }
 
 .waiting{
   color:#8798ac;
-  font-size:14px;
+  font-size:13px;
   margin-top:4px;
 }
 
 .chart-card{
   background:#111f2f;
-  padding:25px;
-  border-radius:24px;
-  margin-bottom:30px;
+  padding:22px;
+  border-radius:22px;
+  margin-bottom:26px;
 }
 
 .chart-symbol{
-  font-size:25px;
+  font-size:24px;
   font-weight:750;
 }
 
 .bigprice{
-  font-size:43px;
+  font-size:40px;
   font-weight:800;
-  margin-top:10px;
+  margin-top:9px;
 }
 
 .bigchange{
-  font-size:27px;
+  font-size:24px;
   margin-top:5px;
 }
 
+.green{color:#42d3a5}
+.red{color:#ff6471}
+.muted{color:#8798ac}
+
 .timeframes{
   display:flex;
-  gap:10px;
-  margin:25px 0 14px;
+  gap:9px;
+  margin:22px 0 14px;
 }
 
 .timeframes button{
   border:0;
   background:#17283c;
   color:#98a6b8;
-  padding:12px 17px;
-  border-radius:12px;
-  font-size:17px;
+  padding:10px 15px;
+  border-radius:11px;
+  font-size:16px;
+  cursor:pointer;
 }
 
 .timeframes button.active{
@@ -150,9 +144,8 @@ header{
 
 #chartArea{
   width:100%;
-  height:420px;
+  height:410px;
   overflow:hidden;
-  border-radius:4px;
 }
 
 .search{
@@ -160,68 +153,74 @@ header{
   border:1px solid #31455e;
   background:#091625;
   color:white;
-  padding:19px 20px;
-  border-radius:18px;
-  font-size:19px;
+  padding:17px 18px;
+  border-radius:17px;
+  font-size:18px;
   outline:none;
-  margin-bottom:25px;
+  margin-bottom:22px;
 }
 
 .title{
-  font-size:28px;
+  font-size:26px;
   font-weight:800;
-  margin:15px 0;
+  margin:14px 0;
 }
 
 .market-row{
   display:grid;
-  grid-template-columns:70px 1fr auto;
+  grid-template-columns:65px 1fr auto;
   align-items:center;
-  gap:12px;
-  padding:22px 5px;
+  gap:11px;
+  padding:20px 5px;
   border-bottom:1px solid #1d3044;
   cursor:pointer;
 }
 
-.coin-icon{
-  width:58px;
-  height:58px;
+.asset-icon{
+  width:54px;
+  height:54px;
   border-radius:50%;
   background:#172b42;
   display:flex;
   align-items:center;
   justify-content:center;
-  font-size:22px;
+  font-size:20px;
   font-weight:800;
 }
 
 .market-symbol{
-  font-size:21px;
+  font-size:20px;
   font-weight:750;
 }
 
 .market-name{
   color:#8c9caf;
-  font-size:17px;
-  margin-top:5px;
+  font-size:16px;
+  margin-top:4px;
 }
 
-.market-right{
-  text-align:right;
-}
+.market-right{text-align:right}
 
 .market-price{
-  font-size:21px;
+  font-size:20px;
   font-weight:750;
 }
 
 .market-change{
-  margin-top:5px;
-  font-size:18px;
+  margin-top:4px;
+  font-size:17px;
 }
 
-.hidden{
-  display:none;
+.hidden{display:none}
+
+.note{
+  background:#0d1b2a;
+  color:#8798ac;
+  border:1px solid #1e3348;
+  padding:13px 15px;
+  border-radius:14px;
+  font-size:14px;
+  margin-bottom:10px;
 }
 
 .footer{
@@ -232,67 +231,33 @@ header{
 }
 
 @media(max-width:600px){
+  .container{padding:18px 15px}
+  .logo{font-size:34px}
+  .subtitle{font-size:16px}
 
-  .container{
-    padding:20px 16px;
+  .indexes{gap:7px}
+  .index-card{padding:14px 9px}
+  .index-name{font-size:12px}
+  .index-price{font-size:17px}
+
+  .chart-card{padding:17px 12px}
+  .bigprice{font-size:35px}
+
+  #chartArea{height:390px}
+
+  .market-row{
+    grid-template-columns:52px 1fr auto;
   }
 
-  .logo{
-    font-size:35px;
-  }
-
-  .subtitle{
+  .asset-icon{
+    width:46px;
+    height:46px;
     font-size:17px;
   }
 
-  .tab{
-    font-size:19px;
-  }
-
-  .indexes{
-    gap:8px;
-  }
-
-  .index-card{
-    padding:15px 10px;
-  }
-
-  .index-name{
-    font-size:13px;
-  }
-
-  .index-price{
-    font-size:18px;
-  }
-
-  .chart-card{
-    padding:18px 14px;
-  }
-
-  .bigprice{
-    font-size:38px;
-  }
-
-  #chartArea{
-    height:390px;
-  }
-
-  .market-row{
-    grid-template-columns:55px 1fr auto;
-  }
-
-  .coin-icon{
-    width:48px;
-    height:48px;
-  }
-
-  .market-symbol{
-    font-size:18px;
-  }
-
-  .market-price{
-    font-size:18px;
-  }
+  .market-symbol{font-size:17px}
+  .market-name{font-size:14px}
+  .market-price{font-size:17px}
 }
 </style>
 </head>
@@ -307,82 +272,70 @@ header{
 </header>
 
 <div class="tabs">
-  <button class="tab" id="stockTab" onclick="showStocks()">
+  <button id="stockTab" class="tab" onclick="showStocks()">
     Chứng khoán
   </button>
 
-  <button class="tab active" id="cryptoTab" onclick="showCrypto()">
+  <button id="cryptoTab" class="tab active" onclick="showCrypto()">
     Crypto
   </button>
 </div>
 
 <div class="indexes">
-
   <div class="index-card">
     <div class="index-name">VN-INDEX</div>
     <div class="index-price">--</div>
-    <div class="waiting">Chờ dữ liệu</div>
+    <div class="waiting">Xem biểu đồ</div>
   </div>
 
   <div class="index-card">
     <div class="index-name">HNX-INDEX</div>
     <div class="index-price">--</div>
-    <div class="waiting">Chờ dữ liệu</div>
+    <div class="waiting">Xem biểu đồ</div>
   </div>
 
   <div class="index-card">
     <div class="index-name">UPCOM</div>
     <div class="index-price">--</div>
-    <div class="waiting">Chờ dữ liệu</div>
+    <div class="waiting">Xem biểu đồ</div>
   </div>
-
 </div>
 
 <div class="chart-card">
 
-  <div id="chartSymbol" class="chart-symbol">
-    BTC / USDT
-  </div>
-
-  <div id="chartPrice" class="bigprice">
-    Đang tải...
-  </div>
-
-  <div id="chartChange" class="bigchange green">
-    --
-  </div>
+  <div id="chartSymbol" class="chart-symbol">BTC / USDT</div>
+  <div id="chartPrice" class="bigprice">Đang tải...</div>
+  <div id="chartChange" class="bigchange muted">--</div>
 
   <div class="timeframes">
-    <button>1H</button>
-    <button>4H</button>
-    <button class="active">1D</button>
-    <button>1W</button>
+    <button data-interval="60">1H</button>
+    <button data-interval="240">4H</button>
+    <button data-interval="D" class="active">1D</button>
+    <button data-interval="W">1W</button>
   </div>
 
   <div id="chartArea"></div>
-
 </div>
 
 <input
-  class="search"
   id="search"
-  placeholder="Tìm Bitcoin, Ethereum, FPT, VCB..."
+  class="search"
+  placeholder="Tìm Bitcoin, Ethereum..."
 >
 
 <div id="cryptoSection">
-
   <div class="title">Thị trường Crypto</div>
-
   <div id="cryptoList"></div>
-
 </div>
 
 <div id="stockSection" class="hidden">
-
   <div class="title">Chứng khoán Việt Nam</div>
 
-  <div id="stockList"></div>
+  <div class="note">
+    Chọn một mã để xem biểu đồ thị trường trên TradingView.
+  </div>
 
+  <div id="stockList"></div>
 </div>
 
 <div class="footer">
@@ -391,670 +344,363 @@ header{
 
 </div>
 
-
 <script>
 
 const cryptoCoins = [
-
-{
- id:"bitcoin",
- symbol:"BTC",
- name:"Bitcoin",
- tv:"BINANCE:BTCUSDT"
-},
-
-{
- id:"ethereum",
- symbol:"ETH",
- name:"Ethereum",
- tv:"BINANCE:ETHUSDT"
-},
-
-{
- id:"binancecoin",
- symbol:"BNB",
- name:"BNB",
- tv:"BINANCE:BNBUSDT"
-},
-
-{
- id:"solana",
- symbol:"SOL",
- name:"Solana",
- tv:"BINANCE:SOLUSDT"
-},
-
-{
- id:"ripple",
- symbol:"XRP",
- name:"XRP",
- tv:"BINANCE:XRPUSDT"
-},
-
-{
- id:"dogecoin",
- symbol:"DOGE",
- name:"Dogecoin",
- tv:"BINANCE:DOGEUSDT"
-}
-
+  {id:"bitcoin",symbol:"BTC",name:"Bitcoin",tv:"BINANCE:BTCUSDT"},
+  {id:"ethereum",symbol:"ETH",name:"Ethereum",tv:"BINANCE:ETHUSDT"},
+  {id:"binancecoin",symbol:"BNB",name:"BNB",tv:"BINANCE:BNBUSDT"},
+  {id:"solana",symbol:"SOL",name:"Solana",tv:"BINANCE:SOLUSDT"},
+  {id:"ripple",symbol:"XRP",name:"XRP",tv:"BINANCE:XRPUSDT"},
+  {id:"dogecoin",symbol:"DOGE",name:"Dogecoin",tv:"BINANCE:DOGEUSDT"}
 ];
-
 
 const stocks = [
-
-{
- symbol:"FPT",
- name:"FPT Corporation",
- price:0,
- change:0
-},
-
-{
- symbol:"VCB",
- name:"Vietcombank",
- price:0,
- change:0
-},
-
-{
- symbol:"HPG",
- name:"Hòa Phát",
- price:0,
- change:0
-},
-
-{
- symbol:"VIC",
- name:"Vingroup",
- price:0,
- change:0
-},
-
-{
- symbol:"VNM",
- name:"Vinamilk",
- price:0,
- change:0
-},
-
-{
- symbol:"MWG",
- name:"Thế Giới Di Động",
- price:0,
- change:0
-},
-
-{
- symbol:"SSI",
- name:"Chứng khoán SSI",
- price:0,
- change:0
-},
-
-{
- symbol:"VHM",
- name:"Vinhomes",
- price:0,
- change:0
-}
-
+  {symbol:"FPT",name:"FPT Corporation",tv:"HOSE:FPT"},
+  {symbol:"VCB",name:"Vietcombank",tv:"HOSE:VCB"},
+  {symbol:"HPG",name:"Hòa Phát",tv:"HOSE:HPG"},
+  {symbol:"VIC",name:"Vingroup",tv:"HOSE:VIC"},
+  {symbol:"VNM",name:"Vinamilk",tv:"HOSE:VNM"},
+  {symbol:"MWG",name:"Thế Giới Di Động",tv:"HOSE:MWG"},
+  {symbol:"SSI",name:"Chứng khoán SSI",tv:"HOSE:SSI"},
+  {symbol:"VHM",name:"Vinhomes",tv:"HOSE:VHM"}
 ];
 
-
-let currentMode="crypto";
-
-let cryptoData=[];
-
+let cryptoData = [];
+let currentMode = "crypto";
+let currentSymbol = "BINANCE:BTCUSDT";
+let currentInterval = "D";
 
 function money(n){
+  if(n === null || n === undefined) return "--";
 
- if(n===undefined || n===null){
-  return "--";
- }
-
- if(n<1){
-  return "$"+Number(n).toFixed(4);
- }
-
- return "$"+Number(n).toLocaleString(
-  "en-US",
-  {
-   maximumFractionDigits:2
+  if(n < 1){
+    return "$" + Number(n).toFixed(4);
   }
- );
 
+  return "$" + Number(n).toLocaleString(
+    "en-US",
+    {maximumFractionDigits:2}
+  );
 }
-
 
 function percent(n){
+  if(n === null || n === undefined) return "--";
 
- if(n===undefined || n===null){
-  return "--";
- }
-
- return (n>=0?"+":"")+Number(n).toFixed(2)+"%";
-
+  return (n >= 0 ? "+" : "") +
+    Number(n).toFixed(2) + "%";
 }
 
+function loadTradingView(symbol){
+  currentSymbol = symbol;
 
-function renderCrypto(){
+  const area = document.getElementById("chartArea");
+  area.innerHTML = "";
 
- const list=document.getElementById("cryptoList");
+  const container = document.createElement("div");
+  container.className = "tradingview-widget-container";
+  container.style.height = "100%";
+  container.style.width = "100%";
 
- list.innerHTML="";
+  const widget = document.createElement("div");
+  widget.className = "tradingview-widget-container__widget";
+  widget.style.height = "100%";
+  widget.style.width = "100%";
 
- cryptoData.forEach(c=>{
+  const script = document.createElement("script");
+  script.type = "text/javascript";
+  script.src =
+    "https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js";
+  script.async = true;
 
-  const row=document.createElement("div");
+  script.innerHTML = JSON.stringify({
+    autosize:true,
+    symbol:symbol,
+    interval:currentInterval,
+    timezone:"Asia/Ho_Chi_Minh",
+    theme:"dark",
+    style:"1",
+    locale:"vi",
+    allow_symbol_change:true,
+    calendar:false,
+    support_host:"https://www.tradingview.com"
+  });
 
-  row.className="market-row";
+  container.appendChild(widget);
+  container.appendChild(script);
+  area.appendChild(container);
+}
 
-  row.innerHTML=`
+function updateCryptoHeader(c){
+  document.getElementById("chartSymbol").textContent =
+    c.symbol + " / USDT";
 
-   <div class="coin-icon">
-    ${c.symbol.charAt(0)}
-   </div>
+  document.getElementById("chartPrice").textContent =
+    money(c.price);
 
-   <div>
-    <div class="market-symbol">
-     ${c.symbol}/USDT
+  const change = document.getElementById("chartChange");
+
+  change.textContent = percent(c.change);
+  change.className =
+    "bigchange " + (c.change >= 0 ? "green" : "red");
+}
+
+function makeCryptoRow(c){
+  const row = document.createElement("div");
+  row.className = "market-row";
+
+  row.innerHTML = `
+    <div class="asset-icon">${c.symbol.charAt(0)}</div>
+
+    <div>
+      <div class="market-symbol">${c.symbol}/USDT</div>
+      <div class="market-name">${c.name}</div>
     </div>
 
-    <div class="market-name">
-     ${c.name}
+    <div class="market-right">
+      <div class="market-price">${money(c.price)}</div>
+      <div class="market-change ${c.change >= 0 ? "green" : "red"}">
+        ${percent(c.change)}
+      </div>
     </div>
-   </div>
-
-   <div class="market-right">
-
-    <div class="market-price">
-     ${money(c.price)}
-    </div>
-
-    <div class="market-change ${c.change>=0?"green":"red"}">
-     ${percent(c.change)}
-    </div>
-
-   </div>
-
   `;
 
-  row.onclick=()=>selectCrypto(c);
+  row.onclick = function(){
+    updateCryptoHeader(c);
+    loadTradingView(c.tv);
+  };
 
-  list.appendChild(row);
-
- });
-
+  return row;
 }
 
+function renderCrypto(data = cryptoData){
+  const list = document.getElementById("cryptoList");
+  list.innerHTML = "";
 
-function renderStocks(data=stocks){
+  data.forEach(c => {
+    list.appendChild(makeCryptoRow(c));
+  });
+}
 
- const list=document.getElementById("stockList");
+function makeStockRow(s){
+  const row = document.createElement("div");
+  row.className = "market-row";
 
- list.innerHTML="";
+  row.innerHTML = `
+    <div class="asset-icon">${s.symbol.charAt(0)}</div>
 
- data.forEach(s=>{
-
-  const row=document.createElement("div");
-
-  row.className="market-row";
-
-  row.innerHTML=`
-
-   <div class="coin-icon">
-    ${s.symbol.charAt(0)}
-   </div>
-
-   <div>
-
-    <div class="market-symbol">
-     ${s.symbol}
+    <div>
+      <div class="market-symbol">${s.symbol}</div>
+      <div class="market-name">${s.name}</div>
     </div>
 
-    <div class="market-name">
-     ${s.name}
+    <div class="market-right">
+      <div class="market-price">Biểu đồ</div>
+      <div class="market-name">TradingView</div>
     </div>
-
-   </div>
-
-   <div class="market-right">
-
-    <div class="market-price">
-     --
-    </div>
-
-    <div class="market-name">
-     Chờ dữ liệu
-    </div>
-
-   </div>
-
   `;
 
-  row.onclick=()=>selectStock(s);
+  row.onclick = function(){
+    document.getElementById("chartSymbol").textContent =
+      s.symbol;
 
-  list.appendChild(row);
+    document.getElementById("chartPrice").textContent =
+      s.name;
 
- });
+    const change =
+      document.getElementById("chartChange");
 
+    change.textContent = "Chứng khoán Việt Nam";
+    change.className = "bigchange muted";
+
+    loadTradingView(s.tv);
+  };
+
+  return row;
 }
 
+function renderStocks(data = stocks){
+  const list = document.getElementById("stockList");
+  list.innerHTML = "";
+
+  data.forEach(s => {
+    list.appendChild(makeStockRow(s));
+  });
+}
 
 async function loadCrypto(){
+  try{
+    const ids =
+      cryptoCoins.map(c => c.id).join(",");
 
- try{
+    const url =
+      "https://api.coingecko.com/api/v3/simple/price" +
+      "?ids=" + ids +
+      "&vs_currencies=usd" +
+      "&include_24hr_change=true";
 
-  const ids=cryptoCoins
-   .map(c=>c.id)
-   .join(",");
+    const response = await fetch(url);
 
-  const url=
-  "https://api.coingecko.com/api/v3/simple/price"+
-  "?ids="+ids+
-  "&vs_currencies=usd"+
-  "&include_24hr_change=true";
+    if(!response.ok){
+      throw new Error("Không lấy được dữ liệu");
+    }
 
-  const response=await fetch(url);
+    const data = await response.json();
 
-  if(!response.ok){
-   throw new Error("Không lấy được dữ liệu");
+    cryptoData = cryptoCoins.map(c => {
+      const info = data[c.id];
+
+      return {
+        ...c,
+        price: info ? info.usd : null,
+        change: info ? info.usd_24h_change : null
+      };
+    });
+
+    renderCrypto();
+
+    if(currentMode === "crypto"){
+      const btc =
+        cryptoData.find(c => c.symbol === "BTC");
+
+      if(btc &&
+         currentSymbol === "BINANCE:BTCUSDT"){
+        updateCryptoHeader(btc);
+      }
+    }
+
+  }catch(error){
+    console.log("Không tải được Crypto", error);
   }
+}
 
-  const data=await response.json();
+function showCrypto(){
+  currentMode = "crypto";
 
-  cryptoData=cryptoCoins.map(c=>{
+  document.getElementById("cryptoSection")
+    .classList.remove("hidden");
 
-   const info=data[c.id];
+  document.getElementById("stockSection")
+    .classList.add("hidden");
 
-   return{
+  document.getElementById("cryptoTab")
+    .classList.add("active");
 
-    ...c,
+  document.getElementById("stockTab")
+    .classList.remove("active");
 
-    price:info ? info.usd : null,
-
-    change:info
-     ? info.usd_24h_change
-     : null
-
-   };
-
-  });
+  document.getElementById("search").value = "";
+  document.getElementById("search").placeholder =
+    "Tìm Bitcoin, Ethereum...";
 
   renderCrypto();
 
-  const btc=cryptoData.find(
-   c=>c.symbol==="BTC"
-  );
+  const btc =
+    cryptoData.find(c => c.symbol === "BTC");
 
-  if(
-   btc &&
-   document.getElementById("chartSymbol")
-   .textContent.includes("BTC")
-  ){
-   updateHeader(btc);
+  if(btc){
+    updateCryptoHeader(btc);
+  }else{
+    document.getElementById("chartSymbol").textContent =
+      "BTC / USDT";
+
+    document.getElementById("chartPrice").textContent =
+      "Đang tải...";
+
+    document.getElementById("chartChange").textContent =
+      "--";
   }
 
- }catch(error){
-
-  console.log(
-   "Không tải được Crypto",
-   error
-  );
-
- }
-
+  loadTradingView("BINANCE:BTCUSDT");
 }
-
-
-function updateHeader(c){
-
- document.getElementById(
-  "chartSymbol"
- ).textContent=
- c.symbol+" / USDT";
-
- document.getElementById(
-  "chartPrice"
- ).textContent=
- money(c.price);
-
- const change=
- document.getElementById(
-  "chartChange"
- );
-
- change.textContent=
- percent(c.change);
-
- change.className=
- "bigchange "+
- (c.change>=0?"green":"red");
-
-}
-
-
-function selectCrypto(c){
-
- currentMode="crypto";
-
- updateHeader(c);
-
- loadTradingView(c.tv);
-
- window.scrollTo({
-  top:200,
-  behavior:"smooth"
- });
-
-}
-
-
-function selectStock(s){
-
- document.getElementById(
-  "chartSymbol"
- ).textContent=s.symbol;
-
- document.getElementById(
-  "chartPrice"
- ).textContent=
- "Chờ dữ liệu";
-
- document.getElementById(
-  "chartChange"
- ).textContent="--";
-
- loadTradingView(
-  "HOSE:"+s.symbol
- );
-
- window.scrollTo({
-  top:200,
-  behavior:"smooth"
- });
-
-}
-
-
-function loadTradingView(symbol){
-
- const area=
- document.getElementById(
-  "chartArea"
- );
-
- area.innerHTML="";
-
- const container=
- document.createElement("div");
-
- container.className=
- "tradingview-widget-container";
-
- container.style.height="100%";
-
- container.style.width="100%";
-
- const widget=
- document.createElement("div");
-
- widget.className=
- "tradingview-widget-container__widget";
-
- widget.style.height="100%";
-
- widget.style.width="100%";
-
- const script=
- document.createElement("script");
-
- script.type=
- "text/javascript";
-
- script.src=
- "https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js";
-
- script.async=true;
-
- script.innerHTML=
- JSON.stringify({
-
-  autosize:true,
-
-  symbol:symbol,
-
-  interval:"D",
-
-  timezone:"Asia/Ho_Chi_Minh",
-
-  theme:"dark",
-
-  style:"1",
-
-  locale:"vi",
-
-  allow_symbol_change:true,
-
-  calendar:false,
-
-  support_host:
-  "https://www.tradingview.com"
-
- });
-
- container.appendChild(widget);
-
- container.appendChild(script);
-
- area.appendChild(container);
-
-}
-
-
-function showCrypto(){
-
- currentMode="crypto";
-
- document.getElementById(
-  "cryptoSection"
- ).classList.remove("hidden");
-
- document.getElementById(
-  "stockSection"
- ).classList.add("hidden");
-
- document.getElementById(
-  "cryptoTab"
- ).classList.add("active");
-
- document.getElementById(
-  "stockTab"
- ).classList.remove("active");
-
- document.getElementById(
-  "search"
- ).placeholder=
- "Tìm Bitcoin, Ethereum, BNB...";
-
- const btc=
- cryptoData.find(
-  c=>c.symbol==="BTC"
- );
-
- if(btc){
-  updateHeader(btc);
- }
-
- loadTradingView(
-  "BINANCE:BTCUSDT"
- );
-
-}
-
 
 function showStocks(){
+  currentMode = "stocks";
 
- currentMode="stocks";
+  document.getElementById("stockSection")
+    .classList.remove("hidden");
 
- document.getElementById(
-  "stockSection"
- ).classList.remove("hidden");
+  document.getElementById("cryptoSection")
+    .classList.add("hidden");
 
- document.getElementById(
-  "cryptoSection"
- ).classList.add("hidden");
+  document.getElementById("stockTab")
+    .classList.add("active");
 
- document.getElementById(
-  "stockTab"
- ).classList.add("active");
+  document.getElementById("cryptoTab")
+    .classList.remove("active");
 
- document.getElementById(
-  "cryptoTab"
- ).classList.remove("active");
+  document.getElementById("search").value = "";
+  document.getElementById("search").placeholder =
+    "Tìm FPT, VCB, HPG...";
 
- document.getElementById(
-  "search"
- ).placeholder=
- "Tìm FPT, VCB, HPG...";
+  renderStocks();
 
- document.getElementById(
-  "chartSymbol"
- ).textContent=
- "VN-INDEX";
+  document.getElementById("chartSymbol").textContent =
+    "VN-INDEX";
 
- document.getElementById(
-  "chartPrice"
- ).textContent=
- "Chờ dữ liệu";
+  document.getElementById("chartPrice").textContent =
+    "Biểu đồ thị trường";
 
- document.getElementById(
-  "chartChange"
- ).textContent=
- "--";
+  const change =
+    document.getElementById("chartChange");
 
- loadTradingView(
-  "HOSE:VNINDEX"
- );
+  change.textContent = "HOSE";
+  change.className = "bigchange muted";
 
+  loadTradingView("HOSE:VNINDEX");
 }
 
+document.getElementById("search")
+.addEventListener("input", function(){
 
-document.getElementById(
- "search"
-).addEventListener(
- "input",
- function(){
+  const q =
+    this.value.trim().toUpperCase();
 
-  const q=
-  this.value
-  .trim()
-  .toUpperCase();
+  if(currentMode === "crypto"){
 
-  if(currentMode==="crypto"){
+    const filtered =
+      cryptoData.filter(c =>
+        c.symbol.toUpperCase().includes(q) ||
+        c.name.toUpperCase().includes(q)
+      );
 
-   const filtered=
-   cryptoData.filter(c=>
-
-    c.symbol.includes(q)
-
-    ||
-
-    c.name
-    .toUpperCase()
-    .includes(q)
-
-   );
-
-   const list=
-   document.getElementById(
-    "cryptoList"
-   );
-
-   list.innerHTML="";
-
-   filtered.forEach(c=>{
-
-    const row=
-    document.createElement("div");
-
-    row.className="market-row";
-
-    row.innerHTML=`
-
-     <div class="coin-icon">
-      ${c.symbol.charAt(0)}
-     </div>
-
-     <div>
-
-      <div class="market-symbol">
-       ${c.symbol}/USDT
-      </div>
-
-      <div class="market-name">
-       ${c.name}
-      </div>
-
-     </div>
-
-     <div class="market-right">
-
-      <div class="market-price">
-       ${money(c.price)}
-      </div>
-
-      <div class="market-change ${c.change>=0?"green":"red"}">
-       ${percent(c.change)}
-      </div>
-
-     </div>
-
-    `;
-
-    row.onclick=
-    ()=>selectCrypto(c);
-
-    list.appendChild(row);
-
-   });
+    renderCrypto(filtered);
 
   }else{
 
-   const filtered=
-   stocks.filter(s=>
+    const filtered =
+      stocks.filter(s =>
+        s.symbol.toUpperCase().includes(q) ||
+        s.name.toUpperCase().includes(q)
+      );
 
-    s.symbol.includes(q)
-
-    ||
-
-    s.name
-    .toUpperCase()
-    .includes(q)
-
-   );
-
-   renderStocks(filtered);
-
+    renderStocks(filtered);
   }
+});
 
- }
-);
+document.querySelectorAll(".timeframes button")
+.forEach(button => {
 
+  button.addEventListener("click", function(){
+
+    document.querySelectorAll(".timeframes button")
+      .forEach(b => b.classList.remove("active"));
+
+    this.classList.add("active");
+
+    currentInterval =
+      this.getAttribute("data-interval");
+
+    loadTradingView(currentSymbol);
+  });
+
+});
 
 renderStocks();
-
-loadTradingView(
- "BINANCE:BTCUSDT"
-);
-
+loadTradingView("BINANCE:BTCUSDT");
 loadCrypto();
 
-setInterval(
- loadCrypto,
- 60000
-);
+setInterval(loadCrypto, 60000);
 
 </script>
 
