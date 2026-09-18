@@ -267,7 +267,37 @@ const coins=[
  {symbol:"XRP",name:"XRP",price:0.58,change:1.14},
  {symbol:"DOGE",name:"Dogecoin",price:0.118,change:-1.26}
 ];
+async function updateCryptoPrices(){
+  try{
+    const res = await fetch(
+      "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,binancecoin,solana,ripple,dogecoin&vs_currencies=usd&include_24hr_change=true"
+    );
 
+    const data = await res.json();
+
+    const ids = [
+      "bitcoin",
+      "ethereum",
+      "binancecoin",
+      "solana",
+      "ripple",
+      "dogecoin"
+    ];
+
+    coins.forEach((coin,i)=>{
+      const info = data[ids[i]];
+
+      if(info){
+        coin.price = info.usd;
+        coin.change = info.usd_24h_change;
+      }
+    });
+
+    renderCoins(coins);
+  }catch(error){
+    console.log("Không lấy được giá Crypto",error);
+  }
+}
 const coinList=document.getElementById("coinList");
 
 function money(n){
@@ -324,7 +354,8 @@ function selectCoin(c){
 }
 
 selectCoin(coins[0]);
-
+updateCryptoPrices();
+setInterval(updateCryptoPrices, 60000);
 windo
 </script>
 
