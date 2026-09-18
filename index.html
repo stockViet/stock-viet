@@ -294,6 +294,16 @@ async function updateCryptoPrices(){
     });
 
     renderCoins(coins);
+    const btc = coins[0];
+
+document.getElementById("chartSymbol").innerHTML = "BTC / USDT";
+document.getElementById("chartPrice").textContent =
+  "$" + btc.price.toLocaleString("en-US", {maximumFractionDigits:2});
+
+const btcChange = document.getElementById("chartChange");
+btcChange.textContent =
+  (btc.change >= 0 ? "+" : "") + btc.change.toFixed(2) + "%";
+btcChange.className = btc.change >= 0 ? "green" : "red";
   }catch(error){
     console.log("Không lấy được giá Crypto",error);
   }
