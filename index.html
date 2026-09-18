@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stock Việt - Thị trường chứng khoán</title>
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+  background:#07111f;
+  color:#fff;
+  padding-bottom:85px;
+}
+
+header{
+  background:#0b1728;
+  padding:18px 16px 14px;
+  position:sticky;
+  top:0;
+  z-index:10;
+  border-bottom:1px solid #1c2a3c;
+}
+
+.logo{
+  font-size:24px;
+  font-weight:800;
+}
+
+.logo span{
+  color:#20d78b;
+}
+
+.sub{
+  color:#8190a5;
+  font-size:12px;
+  margin-top:3px;
+}
+
+.demo{
+  display:inline-block;
+  background:#162337;
+  color:#ffca55;
+  padding:5px 9px;
+  border-radius:20px;
+  font-size:11px;
+  margin-top:9px;
+}
+
+.container{
+  padding:15px;
+  max-width:1100px;
+  margin:auto;
+}
+
+.market{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:9px;
+}
+
+.card{
+  background:#0e1b2d;
+  border:1px solid #1c2b3e;
+  border-radius:13px;
+  padding:12px;
+}
+
+.index-name{
+  color:#9aa8ba;
+  font-size:11px;
+}
+
+.index-price{
+  font-size:18px;
+  font-weight:700;
+  margin-top:5px;
+}
+
+.green{color:#20d78b}
+.red{color:#ff5f6d}
+.yellow{color:#ffd15c}
+
+.change{
+  font-size:11px;
+  margin-top:5px;
+}
+
+.search{
+  margin:18px 0;
+}
+
+.search input{
+  width:100%;
+  padding:14px 16px;
+  border-radius:12px;
+  border:1px solid #26364b;
+  background:#0e1b2d;
+  color:#fff;
+  font-size:15px;
+  outline:none;
+}
+
+.section-title{
+  font-size:18px;
+  font-weight:700;
+  margin:22px 0 12px;
+}
+
+.stock-table{
+  background:#0e1b2d;
+  border:1px solid #1d2c40;
+  border-radius:14px;
+  overflow:hidden;
+}
+
+.stock-row{
+  display:grid;
+  grid-template-columns:1fr .8fr .8fr .9fr;
+  padding:13px 12px;
+  border-bottom:1px solid #1b293b;
+  align-items:center;
+}
+
+.stock-row:last-child{
+  border-bottom:none;
+}
+
+.stock-header{
+  background:#111f32;
+  color:#8090a6;
+  font-size:11px;
+}
+
+.symbol{
+  font-weight:800;
+  font-size:15px;
+}
+
+.company{
+  color:#718198;
+  font-size:9px;
+  margin-top:2px;
+}
+
+.number{
+  text-align:right;
+  font-size:13px;
+}
+
+.stock-row:not(.stock-header){
+  cursor:pointer;
+}
+
+.detail{
+  background:linear-gradient(145deg,#0e1b2d,#101f32);
+  border:1px solid #203149;
+  border-radius:15px;
+  padding:16px;
+}
+
+.detail-top{
+  display:flex;
+  justify-content:space-between;
+}
+
+.detail-symbol{
+  font-size:24px;
+  font-weight:800;
+}
+
+.detail-price{
+  font-size:25px;
+  font-weight:800;
+}
+
+.chart{
+  height:150px;
+  margin-top:18px;
+  position:relative;
+  overflow:hidden;
+}
+
+.chart svg{
+  width:100%;
+  height:100%;
+}
+
+.stats{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:8px;
+  margin-top:10px;
+}
+
+.stat{
+  background:#0a1625;
+  border-radius:9px;
+  padding:9px;
+}
+
+.stat small{
+  color:#78899f;
+  font-size:9px;
+}
+
+.stat div{
+  font-size:12px;
+  margin-top:4px;
+  font-weight:600;
+}
+
+.watch-item,
+.news{
+  background:#0e1b2d;
+  border:1px solid #1d2c40;
+  border-radius:12px;
+  padding:13px;
+  margin-bottom:9px;
+}
+
+.watch-item{
+  display:flex;
+  justify-content:space-between;
+}
+
+.news-title{
+  font-weight:600;
+  font-size:14px;
+  line-height:1.4;
+}
+
+.news-meta{
+  color:#718198;
+  font-size:10px;
+  margin-top:7px;
+}
+
+.movers{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+
+.mover-title{
+  font-size:12px;
+  color:#8998aa;
+  margin-bottom:9px;
+}
+
+.mover{
+  display:flex;
+  justify-content:space-between;
+  font-size:13px;
+  margin:8px 0;
+}
+
+footer{
+  text-align:center;
+  color:#607087;
+  font-size:10px;
+  padding:30px 20px;
+  line-height:1.5;
+}
+
+.bottom-nav{
+  position:fixed;
+  bottom:0;
+  left:0;
+  right:0;
+  height:68px;
+  background:#0b1728;
+  border-top:1px solid #233248;
+  display:flex;
+  justify-content:space-around;
+  align-items:center;
+  z-index:20;
+}
+
+.nav-item{
+  color:#718198;
+  font-size:10px;
+  text-align:center;
+  cursor:pointer;
+}
+
+.nav-icon{
+  font-size:20px;
+  margin-bottom:3px;
+}
+
+.active{
+  color:#20d78b;
+}
+
+@media(max-width:500px){
+  .market{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .market .card:last-child{
+    grid-column:1/3;
+  }
+}
+
+@media(min-width:800px){
+  .container{
+    padding:25px;
+  }
+
+  .desktop-grid{
+    display:grid;
+    grid-template-columns:1.5fr 1fr;
+    gap:20px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">Stock <span>Việt</span></div>
+  <div class="sub">Thông tin thị trường chứng khoán Việt Nam</div>
+  <div class="demo">⚠ Dữ liệu mô phỏng</div>
+</header>
+
+<div class="container">
+
+  <div class="market">
+    <div class="card">
+      <div class="index-name">VN-INDEX</div>
+      <div class="index-price">1,284.62</div>
+      <div class="change green">▲ 6.32 (+0.49%)</div>
+    </div>
+
+    <div class="card">
+      <div class="index-name">HNX-INDEX</div>
+      <div class="index-price">238.45</div>
+      <div class="change red">▼ 0.81 (-0.34%)</div>
+    </div>
+
+    <div class="card">
+      <div class="index-name">UPCOM</div>
+      <div class="index-price">94.18</div>
+      <div class="change green">▲ 0.27 (+0.29%)</div>
+    </div>
+  </div>
+
+  <div class="search">
+    <input id="search" type="text"
+      placeholder="🔎 Tìm mã cổ phiếu: FPT, VCB, HPG...">
+  </div>
+
+  <div class="desktop-grid">
+
+    <div>
+
+      <div class="section-title">Bảng giá</div>
+
+      <div class="stock-table" id="stockTable">
+
+        <div class="stock-row stock-header">
+          <div>MÃ CK</div>
+          <div class="number">GIÁ</div>
+          <div class="number">+/-</div>
+          <div class="number">%</div>
+        </div>
+
+      </div>
+
+      <div class="section-title">Chi tiết cổ phiếu</div>
+
+      <div class="detail">
+
+        <div class="detail-top">
+          <div>
+            <div class="detail-symbol" id="detailSymbol">FPT</div>
+            <div class="sub" id="detailCompany">
+              CTCP FPT
+            </div>
+          </div>
+
+          <div style="text-align:right">
+            <div class="detail-price green" id="detailPrice">
+              132.50
+            </div>
+            <div class="green" id="detailChange">
+              +1.50 (+1.15%)
+            </div>
+          </div>
+        </div>
+
+        <div class="chart">
+          <svg viewBox="0 0 500 150"
+            preserveAspectRatio="none">
+            <defs>
+              <linearGradient id="grad"
+                x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%"
+                  stop-color="#20d78b"
+                  stop-opacity=".30"/>
+                <stop offset="100%"
+                  stop-color="#20d78b"
+                  stop-opacity="0"/>
+              </linearGradient>
+            </defs>
+
+            <path
+              d="M0 120 L35 105 L70 110 L105 83 L140 91 L175 65 L210 72 L245 48 L280 58 L315 36 L350 44 L385 25 L420 39 L455 18 L500 28 L500 150 L0 150 Z"
+              fill="url(#grad)">
+            </path>
+
+            <path
+              d="M0 120 L35 105 L70 110 L105 83 L140 91 L175 65 L210 72 L245 48 L280 58 L315 36 L350 44 L385 25 L420 39 L455 18 L500 28"
+              fill="none"
+              stroke="#20d78b"
+              stroke-width="3">
+            </path>
+          </svg>
+        </div>
+
+        <div class="stats">
+          <div class="stat">
+            <small>Tham chiếu</small>
+            <div id="reference">131.00</div>
+          </div>
+
+          <div class="stat">
+            <small>Cao nhất</small>
+            <div id="high">133.20</div>
+          </div>
+
+          <div class="stat">
+            <small>Thấp nhất</small>
+            <div id="low">130.50</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div>
+
+      <div class="section-title">Biến động nổi bật</div>
+
+      <div class="movers">
+
+        <div class="card">
+          <div class="mover-title">🔥 Tăng mạnh</div>
+          <div class="mover"><b>SSI</b><span class="green">+3.12%</span></div>
+          <div class="mover"><b>FPT</b><span class="green">+1.15%</span></div>
+          <div class="mover"><b>HPG</b><span class="green">+0.91%</span></div>
+        </div>
+
+        <div class="card">
+          <div class="mover-title">Giảm mạnh</div>
+          <div class="mover"><b>VHM</b><span class="red">-1.28%</span></div>
+          <div class="mover"><b>VNM</b><span class="red">-0.62%</span></div>
+          <div class="mover"><b>MWG</b><span class="red">-0.38%</span></div>
+        </div>
+
+      </div>
+
+      <div class="section-title">Danh mục theo dõi</div>
+
+      <div class="watch-item">
+        <div><b>FPT</b><div class="company">Công nghệ</div></div>
+        <div class="green">132.50 ▲</div>
+      </div>
+
+      <div class="watch-item">
+        <div><b>VCB</b><div class="company">Ngân hàng</div></div>
+        <div class="green">91.20 ▲</div>
+      </div>
+
+      <div class="watch-item">
+        <div><b>HPG</b><div class="company">Thép</div></div>
+        <div class="green">28.75 ▲</div>
+      </div>
+
+      <div class="section-title">Tin thị trường</div>
+
+      <div class="news">
+        <div class="news-title">
+          Thị trường duy trì sắc xanh, nhóm cổ phiếu
+          vốn hóa lớn giao dịch tích cực
+        </div>
+        <div class="news-meta">
+          Tin mô phỏng • 10 phút trước
+        </div>
+      </div>
+
+      <div class="news">
+        <div class="news-title">
+          Nhà đầu tư chú ý diễn biến nhóm ngân hàng
+          và chứng khoán
+        </div>
+        <div class="news-meta">
+          Tin mô phỏng • 35 phút trước
+        </div>
+      </div>
+
+      <div class="news">
+        <div class="news-title">
+          Thanh khoản thị trường cải thiện trong
+          phiên giao dịch
+        </div>
+        <div class="news-meta">
+          Tin mô phỏng • 1 giờ trước
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  Stock Việt • Phiên bản thử nghiệm<br>
+  Dữ liệu trên website hiện là dữ liệu mô phỏng,
+  không phải dữ liệu giao dịch thời gian thực.
+</footer>
+
+<div class="bottom-nav">
+  <div class="nav-item active">
+    <div class="nav-icon">⌂</div>
+    Thị trường
+  </div>
+
+  <div class="nav-item">
+    <div class="nav-icon">☆</div>
+    Theo dõi
+  </div>
+
+  <div class="nav-item">
+    <div class="nav-icon">⌕</div>
+    Tìm kiếm
+  </div>
+
+  <div class="nav-item">
+    <div class="nav-icon">☰</div>
+    Tin tức
+  </div>
+</div>
+
+<script>
+
+const stocks = [
+  {symbol:"FPT", company:"CTCP FPT", price:132.50, change:1.50, percent:1.15},
+  {symbol:"VCB", company:"Vietcombank", price:91.20, change:0.80, percent:0.88},
+  {symbol:"HPG", company:"Hòa Phát", price:28.75, change:0.26, percent:0.91},
+  {symbol:"VNM", company:"Vinamilk", price:64.30, change:-0.40, percent:-0.62},
+  {symbol:"MWG", company:"Thế Giới Di Động", price:68.10, change:-0.26, percent:-0.38},
+  {symbol:"SSI", company:"Chứng khoán SSI", price:34.70, change:1.05, percent:3.12},
+  {symbol:"VHM", company:"Vinhomes", price:42.40, change:-0.55, percent:-1.28}
+];
+
+const table = document.getElementById("stockTable");
+
+function renderStocks(list){
+
+  const header = `
+    <div class="stock-row stock-header">
+      <div>MÃ CK</div>
+      <div class="number">GIÁ</div>
+      <div class="number">+/-</div>
+      <div class="number">%</div>
+    </div>
+  `;
+
+  table.innerHTML = header;
+
+  list.forEach(stock => {
+
+    const color = stock.change >= 0 ? "green" : "red";
+    const sign = stock.change >= 0 ? "+" : "";
+
+    const row = document.createElement("div");
+    row.className = "stock-row";
+
+    row.innerHTML = `
+      <div>
+        <div class="symbol">${stock.symbol}</div>
+        <div class="company">${stock.company}</div>
+      </div>
+
+      <div class="number ${color}">
+        ${stock.price.toFixed(2)}
+      </div>
+
+      <div class="number ${color}">
+        ${sign}${stock.change.toFixed(2)}
+      </div>
+
+      <div class="number ${color}">
+        ${sign}${stock.percent.toFixed(2)}%
+      </div>
+    `;
+
+    row.onclick = () => showStock(stock);
+
+    table.appendChild(row);
+  });
+}
+
+function showStock(stock){
+
+  const color = stock.change >= 0 ? "green" : "red";
+  const sign = stock.change >= 0 ? "+" : "";
+
+  document.getElementById("detailSymbol").textContent =
+    stock.symbol;
+
+  document.getElementById("detailCompany").textContent =
+    stock.company;
+
+  const price = document.getElementById("detailPrice");
+
+  price.textContent = stock.price.toFixed(2);
+  price.className = "detail-price " + color;
+
+  const change = document.getElementById("detailChange");
+
+  change.textContent =
+    `${sign}${stock.change.toFixed(2)} (${sign}${stock.percent.toFixed(2)}%)`;
+
+  change.className = color;
+
+  const reference = stock.price - stock.change;
+
+  document.getElementById("reference").textContent =
+    reference.toFixed(2);
+
+  document.getElementById("high").textContent =
+    (stock.price * 1.012).toFixed(2);
+
+  document.getElementById("low").textContent =
+    (stock.price * 0.988).toFixed(2);
+}
+
+document.getElementById("search")
+.addEventListener("input", function(){
+
+  const keyword = this.value.toUpperCase().trim();
+
+  const result = stocks.filter(stock =>
+    stock.symbol.includes(keyword) ||
+    stock.company.toUpperCase().includes(keyword)
+  );
+
+  renderStocks(result);
+});
+
+renderStocks(stocks);
+
+</script>
+
+</body>
+</html>
