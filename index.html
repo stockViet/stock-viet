@@ -6,171 +6,294 @@
 <title>Stock Việt</title>
 
 <style>
-*{box-sizing:border-box}
+*{
+  box-sizing:border-box;
+}
+
 body{
   margin:0;
   background:#07111f;
   color:#fff;
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
 }
+
 header{
-  padding:22px 16px 15px;
-  border-bottom:1px solid #1c2939;
+  padding:32px 16px 24px;
+  border-bottom:1px solid #1d2c3d;
 }
+
 .logo{
-  font-size:27px;
+  font-size:34px;
   font-weight:800;
 }
-.logo span{color:#20c997}
-.sub{
-  color:#8b9bad;
-  margin-top:4px;
-  font-size:13px;
+
+.logo span{
+  color:#54c7a2;
 }
+
+.subtitle{
+  margin-top:6px;
+  color:#8493a8;
+  font-size:16px;
+}
+
 .container{
-  padding:15px;
   max-width:900px;
   margin:auto;
+  padding:18px 14px 40px;
 }
+
+/* TAB */
+
 .tabs{
   display:flex;
-  background:#101d2c;
-  border-radius:12px;
+  background:#101d2d;
+  border-radius:14px;
   padding:4px;
-  margin-bottom:15px;
+  margin-bottom:16px;
 }
+
 .tab{
   flex:1;
+  padding:14px 5px;
   text-align:center;
-  padding:11px;
-  border-radius:9px;
-  color:#8fa0b5;
-  font-weight:600;
+  border-radius:11px;
+  color:#91a0b5;
+  font-weight:700;
+  font-size:18px;
+  cursor:pointer;
 }
+
 .tab.active{
-  background:#1d3045;
+  background:#223650;
   color:white;
 }
-.market{
+
+/* INDEX */
+
+.indexes{
   display:grid;
   grid-template-columns:repeat(3,1fr);
   gap:8px;
   margin-bottom:18px;
 }
-.card{
-  background:#101d2c;
-  padding:12px;
-  border-radius:12px;
-}
-.symbol{
-  font-size:12px;
-  color:#9babc0;
-}
-.price{
-  font-weight:700;
-  font-size:17px;
-  margin-top:5px;
-}
-.green{color:#20c997}
-.red{color:#ff5c6c}
 
-.chartbox{
-  background:#101d2c;
-  border-radius:15px;
-  padding:15px;
+.index{
+  background:#111e2e;
+  padding:13px 9px;
+  border-radius:13px;
+}
+
+.index-name{
+  color:#91a0b5;
+  font-size:13px;
+}
+
+.index-price{
+  font-size:19px;
+  font-weight:700;
+  margin-top:6px;
+}
+
+.green{
+  color:#3dd0a4;
+}
+
+.red{
+  color:#ff6070;
+}
+
+/* CHART CARD */
+
+.chart-card{
+  background:#111e2e;
+  border-radius:16px;
+  padding:16px;
   margin-bottom:18px;
 }
-.charthead{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
+
+.chart-symbol{
+  font-size:20px;
+  font-weight:700;
 }
+
 .bigprice{
-  font-size:25px;
+  font-size:35px;
   font-weight:800;
-  margin-top:5px;
+  margin-top:7px;
 }
+
+.change{
+  font-size:20px;
+  margin-top:4px;
+}
+
 .timeframes{
   display:flex;
-  gap:7px;
-  margin:15px 0 5px;
+  gap:8px;
+  margin:16px 0 10px;
 }
+
 .timeframes button{
   border:0;
-  background:#18283a;
-  color:#9eb0c4;
-  padding:7px 12px;
-  border-radius:7px;
+  background:#17283c;
+  color:#9caabd;
+  padding:10px 14px;
+  border-radius:9px;
+  font-size:14px;
 }
-.timeframes .active{
-  background:#243c54;
+
+.timeframes button.active{
+  background:#2c4664;
   color:white;
 }
-#chart{
-  height:280px;
-  margin-top:10px;
+
+/* TRADINGVIEW */
+
+#tradingview-box{
+  width:100%;
+  height:340px;
+  overflow:hidden;
+  border-radius:8px;
+  background:#0b0b0b;
 }
-.title{
+
+.tradingview-widget-container{
+  width:100%;
+  height:100%;
+}
+
+.tradingview-widget-container__widget{
+  width:100%;
+  height:100%;
+}
+
+/* SEARCH */
+
+.search{
+  width:100%;
+  border:1px solid #30445d;
+  background:#0c1726;
+  color:white;
+  padding:16px;
+  border-radius:13px;
   font-size:17px;
-  font-weight:700;
-  margin:20px 0 10px;
+  outline:none;
+  margin:4px 0 22px;
 }
+
+.search::placeholder{
+  color:#8997aa;
+}
+
+.title{
+  font-size:22px;
+  font-weight:800;
+  margin-bottom:10px;
+}
+
+/* COINS */
+
 .coin{
   display:flex;
   align-items:center;
-  padding:14px 3px;
-  border-bottom:1px solid #172638;
+  padding:16px 4px;
+  border-bottom:1px solid #1c2c40;
   cursor:pointer;
 }
-.coinlogo{
-  width:38px;
-  height:38px;
+
+.coin:active{
+  opacity:.7;
+}
+
+.coin-icon{
+  width:46px;
+  height:46px;
   border-radius:50%;
-  background:#18283a;
+  background:#172a40;
   display:flex;
   align-items:center;
   justify-content:center;
   font-weight:800;
-  margin-right:11px;
+  font-size:20px;
+  margin-right:12px;
+  flex-shrink:0;
 }
-.coinname{
+
+.coin-info{
   flex:1;
 }
-.coinname strong{
-  display:block;
+
+.coin-symbol{
+  font-size:18px;
+  font-weight:800;
 }
-.coinname small{
-  color:#8495aa;
+
+.coin-name{
+  color:#8797ad;
+  margin-top:3px;
 }
-.coinprice{
+
+.coin-right{
   text-align:right;
 }
-.coinprice strong{
-  display:block;
+
+.coin-price{
+  font-size:18px;
+  font-weight:800;
 }
-.coinprice small{
-  font-weight:600;
+
+.coin-change{
+  margin-top:4px;
+  font-size:16px;
 }
-.search{
-  width:100%;
-  padding:13px;
-  border-radius:11px;
-  border:1px solid #243448;
-  background:#0d1928;
-  color:white;
-  font-size:15px;
-  outline:none;
+
+.loading{
+  color:#8797ad;
+  padding:20px 0;
 }
+
 .footer{
   text-align:center;
-  color:#65778b;
-  font-size:12px;
-  padding:25px 10px;
+  color:#56677c;
+  margin-top:30px;
+  padding-bottom:20px;
 }
+
+.stock-message{
+  background:#111e2e;
+  border-radius:15px;
+  padding:24px 18px;
+  color:#a4b0c0;
+  line-height:1.6;
+}
+
 @media(max-width:500px){
-  .market{grid-template-columns:repeat(3,1fr)}
-  .price{font-size:14px}
-  .card{padding:10px 7px}
+
+  header{
+    padding-top:28px;
+  }
+
+  .logo{
+    font-size:31px;
+  }
+
+  .container{
+    padding-left:14px;
+    padding-right:14px;
+  }
+
+  .index-price{
+    font-size:17px;
+  }
+
+  .bigprice{
+    font-size:34px;
+  }
+
+  #tradingview-box{
+    height:320px;
+  }
 }
 </style>
 </head>
@@ -178,237 +301,563 @@ header{
 <body>
 
 <header>
-<div class="logo">Stock <span>Việt</span></div>
-<div class="sub">Thị trường chứng khoán & tài sản số</div>
+  <div class="logo">Stock <span>Việt</span></div>
+  <div class="subtitle">Thị trường chứng khoán & tài sản số</div>
 </header>
 
 <div class="container">
 
-<div class="tabs">
-<div class="tab">Chứng khoán</div>
-<div class="tab active">Crypto</div>
-</div>
+  <div class="tabs">
+    <div class="tab" id="stockTab">Chứng khoán</div>
+    <div class="tab active" id="cryptoTab">Crypto</div>
+  </div>
 
-<div class="market">
-<div class="card">
-<div class="symbol">VN-INDEX</div>
-<div class="price">1,284.62</div>
-<div class="green">+0.49%</div>
-</div>
+  <div class="indexes">
+    <div class="index">
+      <div class="index-name">VN-INDEX</div>
+      <div class="index-price">--</div>
+      <div style="color:#8797ad">Chờ dữ liệu</div>
+    </div>
 
-<div class="card">
-<div class="symbol">HNX-INDEX</div>
-<div class="price">238.41</div>
-<div class="green">+0.31%</div>
-</div>
+    <div class="index">
+      <div class="index-name">HNX-INDEX</div>
+      <div class="index-price">--</div>
+      <div style="color:#8797ad">Chờ dữ liệu</div>
+    </div>
 
-<div class="card">
-<div class="symbol">UPCOM</div>
-<div class="price">94.17</div>
-<div class="red">-0.18%</div>
-</div>
-</div>
+    <div class="index">
+      <div class="index-name">UPCOM</div>
+      <div class="index-price">--</div>
+      <div style="color:#8797ad">Chờ dữ liệu</div>
+    </div>
+  </div>
 
-<div class="chartbox">
-<div class="charthead">
-<div>
-<div id="chartSymbol"><b>BTC / USDT</b></div>
-<div class="bigprice" id="chartPrice">$64,250.00</div>
-<div class="green" id="chartChange">+2.45%</div>
-</div>
-</div>
+  <!-- CRYPTO PAGE -->
 
-<div class="timeframes">
-<button>1H</button>
-<button>4H</button>
-<button class="active">1D</button>
-<button>1W</button>
-</div>
+  <div id="cryptoPage">
 
-<div class="tradingview-widget-container" style="height:420px;width:100%">
-  <div class="tradingview-widget-container__widget" style="height:100%;width:100%"></div>
-  <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>
-  {
-    "autosize": true,
-    "symbol": "BINANCE:BTCUSDT",
-    "interval": "D",
-    "timezone": "Asia/Ho_Chi_Minh",
-    "theme": "dark",
-    "style": "1",
-    "locale": "vi",
-    "allow_symbol_change": true,
-    "calendar": false,
-    "support_host": "https://www.tradingview.com"
-  }
-  </script>
-</div>
-</div>
+    <div class="chart-card">
 
-<input class="search" id="search" placeholder="Tìm Bitcoin, Ethereum, BNB...">
-
-<div class="title">Thị trường Crypto</div>
-
-<div id="coinList"></div>
-
-<div class="footer">
-Stock Việt • Theo dõi thị trường
-</div>
-
-</div>
-
-<script src="https://unpkg.com/lightweight-charts/dist/lightweight-charts.standalone.production.js"></script>
-<script>
-const coins = [
-  {id:"bitcoin", symbol:"BTC", name:"Bitcoin", price:0, change:0},
-  {id:"ethereum", symbol:"ETH", name:"Ethereum", price:0, change:0},
-  {id:"binancecoin", symbol:"BNB", name:"BNB", price:0, change:0},
-  {id:"solana", symbol:"SOL", name:"Solana", price:0, change:0},
-  {id:"ripple", symbol:"XRP", name:"XRP", price:0, change:0},
-  {id:"dogecoin", symbol:"DOGE", name:"Dogecoin", price:0, change:0}
-];
-
-const coinList = document.getElementById("coinList");
-
-function money(n){
-  if(n < 1) return "$" + n.toFixed(3);
-
-  return "$" + n.toLocaleString("en-US",{
-    maximumFractionDigits:2
-  });
-}
-
-function renderCoins(data){
-  coinList.innerHTML = "";
-
-  data.forEach(c=>{
-    const row = document.createElement("div");
-    row.className = "coin";
-
-    row.innerHTML = `
-      <div class="coinleft">
-        <div class="coinicon">${c.symbol.charAt(0)}</div>
-        <div>
-          <b>${c.symbol}/USDT</b>
-          <span>${c.name}</span>
-        </div>
+      <div class="chart-symbol" id="chartSymbol">
+        BTC / USDT
       </div>
 
-      <div class="coinprice">
-        <b>${money(c.price)}</b>
-        <span class="${c.change >= 0 ? "green" : "red"}">
-          ${c.change >= 0 ? "+" : ""}${c.change.toFixed(2)}%
-        </span>
+      <div class="bigprice" id="chartPrice">
+        Đang tải...
+      </div>
+
+      <div class="change" id="chartChange"></div>
+
+      <div class="timeframes">
+        <button data-interval="60">1H</button>
+        <button data-interval="240">4H</button>
+        <button class="active" data-interval="D">1D</button>
+        <button data-interval="W">1W</button>
+      </div>
+
+      <div id="tradingview-box"></div>
+
+    </div>
+
+    <input
+      class="search"
+      id="search"
+      placeholder="Tìm Bitcoin, Ethereum, BNB..."
+    >
+
+    <div class="title">Thị trường Crypto</div>
+
+    <div id="coinList">
+      <div class="loading">Đang tải giá Crypto...</div>
+    </div>
+
+  </div>
+
+  <!-- STOCK PAGE -->
+
+  <div id="stockPage" style="display:none">
+
+    <div class="title">Chứng khoán Việt Nam</div>
+
+    <div class="stock-message">
+      Khu vực chứng khoán đang được chuẩn bị dữ liệu.
+      <br><br>
+      Sau khi phần Crypto hoàn thiện, có thể kết nối dữ liệu
+      VN-INDEX, HNX-INDEX, UPCOM và các mã cổ phiếu Việt Nam tại đây.
+    </div>
+
+  </div>
+
+  <div class="footer">
+    Stock Việt • Theo dõi thị trường
+  </div>
+
+</div>
+
+
+<script>
+
+/* =========================
+   DANH SÁCH CRYPTO
+========================= */
+
+const coins = [
+  {
+    id:"bitcoin",
+    symbol:"BTC",
+    name:"Bitcoin",
+    tv:"BINANCE:BTCUSDT"
+  },
+  {
+    id:"ethereum",
+    symbol:"ETH",
+    name:"Ethereum",
+    tv:"BINANCE:ETHUSDT"
+  },
+  {
+    id:"binancecoin",
+    symbol:"BNB",
+    name:"BNB",
+    tv:"BINANCE:BNBUSDT"
+  },
+  {
+    id:"solana",
+    symbol:"SOL",
+    name:"Solana",
+    tv:"BINANCE:SOLUSDT"
+  },
+  {
+    id:"ripple",
+    symbol:"XRP",
+    name:"XRP",
+    tv:"BINANCE:XRPUSDT"
+  },
+  {
+    id:"dogecoin",
+    symbol:"DOGE",
+    name:"Dogecoin",
+    tv:"BINANCE:DOGEUSDT"
+  }
+];
+
+let currentCoin = coins[0];
+let currentInterval = "D";
+
+
+/* =========================
+   FORMAT GIÁ
+========================= */
+
+function money(n){
+
+  if(n === undefined || n === null){
+    return "--";
+  }
+
+  if(n < 1){
+    return "$" + Number(n).toFixed(4);
+  }
+
+  if(n < 100){
+    return "$" + Number(n).toLocaleString(
+      "en-US",
+      {maximumFractionDigits:2}
+    );
+  }
+
+  return "$" + Number(n).toLocaleString(
+    "en-US",
+    {maximumFractionDigits:2}
+  );
+}
+
+
+/* =========================
+   TRADINGVIEW
+========================= */
+
+function loadChart(){
+
+  const box = document.getElementById("tradingview-box");
+
+  box.innerHTML = "";
+
+  const container = document.createElement("div");
+
+  container.className = "tradingview-widget-container";
+
+  const widget = document.createElement("div");
+
+  widget.className =
+    "tradingview-widget-container__widget";
+
+  container.appendChild(widget);
+
+  const script = document.createElement("script");
+
+  script.type = "text/javascript";
+
+  script.src =
+    "https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js";
+
+  script.async = true;
+
+  script.innerHTML = JSON.stringify({
+
+    autosize:true,
+
+    symbol:currentCoin.tv,
+
+    interval:currentInterval,
+
+    timezone:"Asia/Ho_Chi_Minh",
+
+    theme:"dark",
+
+    style:"1",
+
+    locale:"vi",
+
+    backgroundColor:"#0b0b0b",
+
+    gridColor:"rgba(255,255,255,0.06)",
+
+    allow_symbol_change:true,
+
+    calendar:false,
+
+    hide_side_toolbar:true,
+
+    support_host:"https://www.tradingview.com"
+
+  });
+
+  container.appendChild(script);
+
+  box.appendChild(container);
+}
+
+
+/* =========================
+   HIỂN THỊ DANH SÁCH
+========================= */
+
+function renderCoins(data){
+
+  const list =
+    document.getElementById("coinList");
+
+  list.innerHTML = "";
+
+  data.forEach(c=>{
+
+    const row =
+      document.createElement("div");
+
+    row.className = "coin";
+
+    const change =
+      Number(c.change || 0);
+
+    row.innerHTML = `
+
+      <div class="coin-icon">
+        ${c.symbol.charAt(0)}
+      </div>
+
+      <div class="coin-info">
+
+        <div class="coin-symbol">
+          ${c.symbol}/USDT
+        </div>
+
+        <div class="coin-name">
+          ${c.name}
+        </div>
+
+      </div>
+
+      <div class="coin-right">
+
+        <div class="coin-price">
+          ${money(c.price)}
+        </div>
+
+        <div class="coin-change
+        ${change >= 0 ? "green":"red"}">
+
+          ${change >= 0 ? "+":""}
+          ${change.toFixed(2)}%
+
+        </div>
+
       </div>
     `;
 
     row.onclick = ()=>selectCoin(c);
-    coinList.appendChild(row);
+
+    list.appendChild(row);
+
   });
+
 }
 
-function updateBigPrice(c){
-  document.getElementById("chartSymbol").innerHTML =
-    "<b>" + c.symbol + " / USDT</b>";
 
-  document.getElementById("chartPrice").textContent =
+/* =========================
+   CHỌN COIN
+========================= */
+
+function selectCoin(c){
+
+  currentCoin = c;
+
+  document.getElementById("chartSymbol")
+    .textContent =
+    c.symbol + " / USDT";
+
+  document.getElementById("chartPrice")
+    .textContent =
     money(c.price);
 
-  const change = document.getElementById("chartChange");
+  const change =
+    document.getElementById("chartChange");
+
+  const n = Number(c.change || 0);
 
   change.textContent =
-    (c.change >= 0 ? "+" : "") +
-    c.change.toFixed(2) + "%";
+    (n >= 0 ? "+" : "") +
+    n.toFixed(2) +
+    "%";
 
   change.className =
-    c.change >= 0 ? "green" : "red";
+    "change " +
+    (n >= 0 ? "green":"red");
+
+  loadChart();
+
+  window.scrollTo({
+    top:220,
+    behavior:"smooth"
+  });
+
 }
 
+
+/* =========================
+   LẤY GIÁ THẬT
+========================= */
+
 async function updateCryptoPrices(){
+
   try{
-    const ids = coins.map(c=>c.id).join(",");
+
+    const ids =
+      coins.map(c=>c.id).join(",");
 
     const url =
-      "https://api.coingecko.com/api/v3/simple/price?ids=" +
-      ids +
-      "&vs_currencies=usd&include_24hr_change=true";
+      "https://api.coingecko.com/api/v3/simple/price" +
+      "?ids=" + ids +
+      "&vs_currencies=usd" +
+      "&include_24hr_change=true";
 
-    const res = await fetch(url);
+    const response =
+      await fetch(url);
 
-    if(!res.ok){
+    if(!response.ok){
       throw new Error("API error");
     }
 
-    const data = await res.json();
+    const data =
+      await response.json();
 
     coins.forEach(c=>{
-      if(data[c.id]){
-        c.price = data[c.id].usd;
+
+      const info = data[c.id];
+
+      if(info){
+
+        c.price =
+          info.usd;
+
         c.change =
-          data[c.id].usd_24h_change || 0;
+          info.usd_24h_change;
+
       }
+
     });
 
     renderCoins(coins);
-    updateBigPrice(coins[0]);
 
-  }catch(error){
-    console.log("Không lấy được giá Crypto", error);
+    /* cập nhật ô giá lớn
+       nhưng KHÔNG đổi coin đang xem */
+
+    const fresh =
+      coins.find(
+        c=>c.symbol === currentCoin.symbol
+      );
+
+    if(fresh){
+
+      currentCoin = fresh;
+
+      document.getElementById("chartPrice")
+        .textContent =
+        money(fresh.price);
+
+      const change =
+        document.getElementById("chartChange");
+
+      const n =
+        Number(fresh.change || 0);
+
+      change.textContent =
+        (n >= 0 ? "+" : "") +
+        n.toFixed(2) +
+        "%";
+
+      change.className =
+        "change " +
+        (n >= 0 ? "green":"red");
+
+    }
+
   }
+
+  catch(error){
+
+    console.log(
+      "Không lấy được dữ liệu Crypto",
+      error
+    );
+
+  }
+
 }
 
-  function selectCoin(c){
-  updateBigPrice(c);
 
-  const symbolMap = {
-    BTC: "BINANCE:BTCUSDT",
-    ETH: "BINANCE:ETHUSDT",
-    BNB: "BINANCE:BNBUSDT",
-    SOL: "BINANCE:SOLUSDT",
-    XRP: "BINANCE:XRPUSDT",
-    DOGE: "BINANCE:DOGEUSDT"
-  };
+/* =========================
+   TÌM KIẾM
+========================= */
 
-  const widget = document.querySelector(
-    ".tradingview-widget-container"
-  );
+document
+.getElementById("search")
+.addEventListener("input",function(){
 
-  if(widget){
-    widget.innerHTML = `
-      <div class="tradingview-widget-container__widget"
-           style="height:100%;width:100%"></div>
-      <script type="text/javascript"
-        src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js"
-        async>
-      {
-        "autosize": true,
-        "symbol": "${symbolMap[c.symbol]}",
-        "interval": "D",
-        "timezone": "Asia/Ho_Chi_Minh",
-        "theme": "dark",
-        "style": "1",
-        "locale": "vi",
-        "allow_symbol_change": true,
-        "calendar": false
-      }
-      <\/script>
-    `;
-  }
-}
-document.getElementById("search").addEventListener("input",function(){
-  const q = this.value.toUpperCase();
+  const q =
+    this.value
+    .trim()
+    .toUpperCase();
 
-  renderCoins(
+  const result =
     coins.filter(c=>
-      c.symbol.includes(q) ||
-      c.name.toUpperCase().includes(q)
-    )
-  );
+
+      c.symbol.includes(q)
+
+      ||
+
+      c.name
+      .toUpperCase()
+      .includes(q)
+
+    );
+
+  renderCoins(result);
+
 });
 
-renderCoins(coins);
+
+/* =========================
+   KHUNG THỜI GIAN
+========================= */
+
+document
+.querySelectorAll(".timeframes button")
+.forEach(button=>{
+
+  button.addEventListener(
+    "click",
+    function(){
+
+      document
+      .querySelectorAll(
+        ".timeframes button"
+      )
+      .forEach(b=>
+        b.classList.remove("active")
+      );
+
+      this.classList.add("active");
+
+      currentInterval =
+        this.dataset.interval;
+
+      loadChart();
+
+    }
+  );
+
+});
+
+
+/* =========================
+   TAB
+========================= */
+
+const cryptoTab =
+  document.getElementById("cryptoTab");
+
+const stockTab =
+  document.getElementById("stockTab");
+
+const cryptoPage =
+  document.getElementById("cryptoPage");
+
+const stockPage =
+  document.getElementById("stockPage");
+
+
+cryptoTab.onclick = ()=>{
+
+  cryptoTab.classList.add("active");
+
+  stockTab.classList.remove("active");
+
+  cryptoPage.style.display="block";
+
+  stockPage.style.display="none";
+
+};
+
+
+stockTab.onclick = ()=>{
+
+  stockTab.classList.add("active");
+
+  cryptoTab.classList.remove("active");
+
+  cryptoPage.style.display="none";
+
+  stockPage.style.display="block";
+
+};
+
+
+/* =========================
+   KHỞI ĐỘNG
+========================= */
+
+loadChart();
+
 updateCryptoPrices();
 
-setInterval(updateCryptoPrices,60000);
+/* cập nhật giá mỗi 60 giây */
+
+setInterval(
+  updateCryptoPrices,
+  60000
+);
+
 </script>
+
 </body>
 </html>
