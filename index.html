@@ -225,7 +225,23 @@ header{
 <button>1W</button>
 </div>
 
-<div id="chart"></div>
+<div class="tradingview-widget-container" style="height:420px;width:100%">
+  <div class="tradingview-widget-container__widget" style="height:100%;width:100%"></div>
+  <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>
+  {
+    "autosize": true,
+    "symbol": "BINANCE:BTCUSDT",
+    "interval": "D",
+    "timezone": "Asia/Ho_Chi_Minh",
+    "theme": "dark",
+    "style": "1",
+    "locale": "vi",
+    "allow_symbol_change": true,
+    "calendar": false,
+    "support_host": "https://www.tradingview.com"
+  }
+  </script>
+</div>
 </div>
 
 <input class="search" id="search" placeholder="Tìm Bitcoin, Ethereum, BNB...">
@@ -293,52 +309,7 @@ document.getElementById("search").addEventListener("input",function(){
  ));
 });
 
-const chart=LightweightCharts.createChart(
- document.getElementById("chart"),
- {
-  layout:{
-    background:{color:"#101d2c"},
-    textColor:"#8798ac"
-  },
-  grid:{
-    vertLines:{color:"#172638"},
-    horzLines:{color:"#172638"}
-  },
-  width:document.getElementById("chart").clientWidth,
-  height:280
- }
-);
 
-const candleSeries=chart.addSeries(LightweightCharts.CandlestickSeries,{
- upColor:"#20c997",
- downColor:"#ff5c6c",
- borderVisible:false,
- wickUpColor:"#20c997",
- wickDownColor:"#ff5c6c"
-});
-
-function makeData(base){
- let data=[];
- let price=base*0.94;
- let now=Math.floor(Date.now()/1000);
- for(let i=40;i>0;i--){
-   let open=price;
-   let change=(Math.random()-.47)*(base*.018);
-   let close=Math.max(open+change,1);
-   let high=Math.max(open,close)+(Math.random()*base*.006);
-   let low=Math.min(open,close)-(Math.random()*base*.006);
-
-   data.push({
-    time:now-i*86400,
-    open:open,
-    high:high,
-    low:low,
-    close:close
-   });
-   price=close;
- }
- return data;
-}
 
 function selectCoin(c){
  document.getElementById("chartSymbol").innerHTML="<b>"+c.symbol+" / USDT</b>";
@@ -348,19 +319,13 @@ function selectCoin(c){
  ch.textContent=(c.change>=0?"+":"")+c.change.toFixed(2)+"%";
  ch.className=c.change>=0?"green":"red";
 
- candleSeries.setData(makeData(c.price));
- chart.timeScale().fitContent();
 
  window.scrollTo({top:200,behavior:"smooth"});
 }
 
 selectCoin(coins[0]);
 
-window.addEventListener("resize",()=>{
- chart.applyOptions({
-  width:document.getElementById("chart").clientWidth
- });
-});
+windo
 </script>
 
 </body>
