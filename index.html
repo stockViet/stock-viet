@@ -257,116 +257,124 @@ Stock Việt • Theo dõi thị trường
 </div>
 
 <script src="https://unpkg.com/lightweight-charts/dist/lightweight-charts.standalone.production.js"></script>
-
 <script>
-const coins=[
- {symbol:"BTC",name:"Bitcoin",price:64250,change:2.45},
- {symbol:"ETH",name:"Ethereum",price:3348.20,change:1.82},
- {symbol:"BNB",name:"BNB",price:612.40,change:-0.74},
- {symbol:"SOL",name:"Solana",price:148.72,change:3.21},
- {symbol:"XRP",name:"XRP",price:0.58,change:1.14},
- {symbol:"DOGE",name:"Dogecoin",price:0.118,change:-1.26}
+const coins = [
+  {id:"bitcoin", symbol:"BTC", name:"Bitcoin", price:0, change:0},
+  {id:"ethereum", symbol:"ETH", name:"Ethereum", price:0, change:0},
+  {id:"binancecoin", symbol:"BNB", name:"BNB", price:0, change:0},
+  {id:"solana", symbol:"SOL", name:"Solana", price:0, change:0},
+  {id:"ripple", symbol:"XRP", name:"XRP", price:0, change:0},
+  {id:"dogecoin", symbol:"DOGE", name:"Dogecoin", price:0, change:0}
 ];
+
+const coinList = document.getElementById("coinList");
+
+function money(n){
+  if(n < 1) return "$" + n.toFixed(3);
+
+  return "$" + n.toLocaleString("en-US",{
+    maximumFractionDigits:2
+  });
+}
+
+function renderCoins(data){
+  coinList.innerHTML = "";
+
+  data.forEach(c=>{
+    const row = document.createElement("div");
+    row.className = "coin";
+
+    row.innerHTML = `
+      <div class="coinleft">
+        <div class="coinicon">${c.symbol.charAt(0)}</div>
+        <div>
+          <b>${c.symbol}/USDT</b>
+          <span>${c.name}</span>
+        </div>
+      </div>
+
+      <div class="coinprice">
+        <b>${money(c.price)}</b>
+        <span class="${c.change >= 0 ? "green" : "red"}">
+          ${c.change >= 0 ? "+" : ""}${c.change.toFixed(2)}%
+        </span>
+      </div>
+    `;
+
+    row.onclick = ()=>selectCoin(c);
+    coinList.appendChild(row);
+  });
+}
+
+function updateBigPrice(c){
+  document.getElementById("chartSymbol").innerHTML =
+    "<b>" + c.symbol + " / USDT</b>";
+
+  document.getElementById("chartPrice").textContent =
+    money(c.price);
+
+  const change = document.getElementById("chartChange");
+
+  change.textContent =
+    (c.change >= 0 ? "+" : "") +
+    c.change.toFixed(2) + "%";
+
+  change.className =
+    c.change >= 0 ? "green" : "red";
+}
+
 async function updateCryptoPrices(){
   try{
-    const res = await fetch(
-      "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,binancecoin,solana,ripple,dogecoin&vs_currencies=usd&include_24hr_change=true"
-    );
+    const ids = coins.map(c=>c.id).join(",");
+
+    const url =
+      "https://api.coingecko.com/api/v3/simple/price?ids=" +
+      ids +
+      "&vs_currencies=usd&include_24hr_change=true";
+
+    const res = await fetch(url);
+
+    if(!res.ok){
+      throw new Error("API error");
+    }
 
     const data = await res.json();
 
-    const ids = [
-      "bitcoin",
-      "ethereum",
-      "binancecoin",
-      "solana",
-      "ripple",
-      "dogecoin"
-    ];
-
-    coins.forEach((coin,i)=>{
-      const info = data[ids[i]];
-
-      if(info){
-        coin.price = info.usd;
-        coin.change = info.usd_24h_change;
+    coins.forEach(c=>{
+      if(data[c.id]){
+        c.price = data[c.id].usd;
+        c.change =
+          data[c.id].usd_24h_change || 0;
       }
     });
 
     renderCoins(coins);
-    const btc = coins[0];
+    updateBigPrice(coins[0]);
 
-document.getElementById("chartSymbol").innerHTML = "BTC / USDT";
-document.getElementById("chartPrice").textContent =
-  "$" + btc.price.toLocaleString("en-US", {maximumFractionDigits:2});
-
-const btcChange = document.getElementById("chartChange");
-btcChange.textContent =
-  (btc.change >= 0 ? "+" : "") + btc.change.toFixed(2) + "%";
-btcChange.className = btc.change >= 0 ? "green" : "red";
   }catch(error){
-    console.log("Không lấy được giá Crypto",error);
+    console.log("Không lấy được giá Crypto", error);
   }
 }
-const coinList=document.getElementById("coinList");
-
-function money(n){
- if(n<1) return "$"+n.toFixed(3);
- return "$"+n.toLocaleString("en-US",{maximumFractionDigits:2});
-}
-
-function renderCoins(data){
- coinList.innerHTML="";
- data.forEach(c=>{
-   const row=document.createElement("div");
-   row.className="coin";
-
-   row.innerHTML=`
-   <div class="coinlogo">${c.symbol.charAt(0)}</div>
-   <div class="coinname">
-     <strong>${c.symbol}/USDT</strong>
-     <small>${c.name}</small>
-   </div>
-   <div class="coinprice">
-     <strong>${money(c.price)}</strong>
-     <small class="${c.change>=0?'green':'red'}">
-       ${c.change>=0?'+':''}${c.change.toFixed(2)}%
-     </small>
-   </div>`;
-
-   row.onclick=()=>selectCoin(c);
-   coinList.appendChild(row);
- });
-}
-
-renderCoins(coins);
-
-document.getElementById("search").addEventListener("input",function(){
- const q=this.value.toUpperCase();
- renderCoins(coins.filter(c=>
-   c.symbol.includes(q) ||
-   c.name.toUpperCase().includes(q)
- ));
-});
-
-
 
 function selectCoin(c){
- document.getElementById("chartSymbol").innerHTML="<b>"+c.symbol+" / USDT</b>";
- document.getElementById("chartPrice").textContent=money(c.price);
-
- const ch=document.getElementById("chartChange");
- ch.textContent=(c.change>=0?"+":"")+c.change.toFixed(2)+"%";
- ch.className=c.change>=0?"green":"red";
-
-
- window.scrollTo({top:200,behavior:"smooth"});
+  updateBigPrice(c);
 }
 
-selectCoin(coins[0]);
-updateCryptoPrices();
-setInterval(updateCryptoPrices, 60000);
-</script>
+document.getElementById("search").addEventListener("input",function(){
+  const q = this.value.toUpperCase();
 
+  renderCoins(
+    coins.filter(c=>
+      c.symbol.includes(q) ||
+      c.name.toUpperCase().includes(q)
+    )
+  );
+});
+
+renderCoins(coins);
+updateCryptoPrices();
+
+setInterval(updateCryptoPrices,60000);
+</script>
 </body>
 </html>
